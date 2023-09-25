@@ -1,8 +1,11 @@
 import React from 'react'
 
+
 const AccountsPage = () => {
   return (
-    <div>AccountsPage</div>
+    <div>
+      <div>AccountsPage</div>
+    </div>
   )
 }
 
