@@ -1,8 +1,12 @@
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import "../style/style.css"
 // import Logo from "../components/Logo"
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="homePageContainer">
+      <Header />
       <main>
         <div class="hero">
           <section className="hero__content">
@@ -51,6 +55,7 @@ const HomePage = () => {
           </div>
         </section>
       </main>
+      <Footer />
     </div>
   )
 }

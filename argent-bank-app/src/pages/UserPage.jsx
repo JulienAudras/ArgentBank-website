@@ -1,9 +1,12 @@
-import React from 'react'
+import Header from "../components/Header"
+import Footer from "../components/Footer"
 
 const UserPage = () => {
   return (
-    <div>
+    <div className="userPageContainer">
+    <Header />
       <div>UserPage</div>
+    <Footer />
     </div>
   )
 }

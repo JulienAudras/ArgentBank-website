@@ -27,11 +27,32 @@ body {
   white-space: nowrap !important; /* 3 */
 }
 
+.submitButton {
+  outline: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+}
+
 .footer {
   display: flex;
   justify-content: center;
   border-top: 2px solid #ccc;
-  padding: 1rem 0 0.5rem;
+  padding: 2rem 0 1.5rem;
+  background-color: white;
 }
 .footer__text {
   margin: 0;
@@ -44,6 +65,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
+  background-color: white;
 }
 
 .logo {
@@ -53,6 +75,14 @@ body {
 .logo__image {
   max-width: 100%;
   width: 200px;
+}
+
+.homePageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 100vh;
 }
 
 .hero {
@@ -110,6 +140,7 @@ body {
 .features {
   display: flex;
   flex-direction: row;
+  background-color: white;
 }
 @media (min-width: 920px) {
   .features .features {
@@ -133,6 +164,61 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.loginPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: #12002b;
+}
+
+.mainLogInSection {
+  background-color: #12002b;
+}
+
+.sign-in-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  margin: auto auto;
+  margin-top: 3rem;
+  padding: 2rem;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.inputField label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.inputField input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.input-remember {
+  display: flex;
+}
+
+.input-remember label {
+  margin-left: 0.25rem;
+}
+
+.accountsPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 100vh;
+}
+
 .main-nav-item {
   font-weight: bold;
   color: #2c3e50;
@@ -145,4 +231,13 @@ body {
 }
 .main-nav-item:hover {
   text-decoration: underline;
+}
+
+.userPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: #12002b;
 }/*# sourceMappingURL=style.css.map */
