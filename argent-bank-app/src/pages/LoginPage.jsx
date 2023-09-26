@@ -5,8 +5,37 @@ import Field, {FIELD_TYPES} from "../components/Field"
 import Button, {BUTTON_TYPES} from "../components/Button"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import {useSelector, useDispatch} from "react-redux"
+import { Navigate } from "react-router-dom"
+import { useState, useEffect} from "react"
+
 
 const LoginPage = () => {
+
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const logState = useSelector(state => state.isLogged);
+
+  console.log("logstate", logState);
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log("submit")
+    dispatch({type: "isLogged/login"})
+  }
+
+  useEffect(() => {
+    if (logState) {
+      setShouldRedirect(true)
+    }
+  }, [logState])
+
+  if (shouldRedirect) {
+    return <Navigate to="/accounts" />
+  }
+
   return (
     <div className="loginPageContainer">
       <Header />
@@ -24,7 +53,6 @@ const LoginPage = () => {
               labelClassName="loginInputField__label"
               />
           
-          
             <Field
               type={FIELD_TYPES.PASSWORD}
               label="Password"
@@ -37,7 +65,7 @@ const LoginPage = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <Button type={BUTTON_TYPES.SUBMIT}  title="Sign In" className="signInPageButton">
+          <Button type={BUTTON_TYPES.SUBMIT}  title="Sign In" className="signInPageButton" onClick={handleSubmit}>
             Sign In
           </Button>
         </form>

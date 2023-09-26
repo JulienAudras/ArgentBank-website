@@ -1,5 +1,11 @@
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import Button, {BUTTON_TYPES} from "../components/Button"
+import {useSelector, useDispatch} from "react-redux"
+
+import "../style/style.css"
+
+
 
 
 const AccountsPage = () => {

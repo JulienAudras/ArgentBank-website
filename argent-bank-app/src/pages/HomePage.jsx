@@ -8,7 +8,7 @@ const HomePage = () => {
     <div className="homePageContainer">
       <Header />
       <main>
-        <div class="hero">
+        <div className="hero">
           <section className="hero__content">
             <h2 className="hero__content sr-only" >Promoted Content</h2>
             <p className="hero__content--subtitle">No fees.</p>

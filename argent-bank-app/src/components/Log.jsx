@@ -1,39 +1,53 @@
-import { useState } from "react"
-import {Link} from "react-router-dom"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUserCircle} from "@fortawesome/free-solid-svg-icons"
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
-import "../style/style.css"
+// import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import "../style/style.css";
 
-// Ligne de test pour la Maquette a supprimer après le fetch
-const temporaryName = "John Doe"
+const temporaryName = "John Doe";
 
-const Log = (name) => {
-    const [isLogged] = useState(false)
+const Log = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); 
+  const logState = useSelector((state) => state.isLogged);
+
+  const handleLogOut = () => {
+    dispatch({ type: "isLogged/logout" });
+    navigate("/login"); 
+  };
+
 
   return (
     <div className="loginButtonsContainer">
-    {isLogged ? 
-    (
+      {logState ? (
         <div>
-            <Link to="/user" className="main-nav-item">
-                <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__signInIcon"/>
-                {name=temporaryName}
-            </Link>
-            <Link to="/login" className="main-nav-item">
-                <FontAwesomeIcon icon={faRightFromBracket} className="main-nav-item__signInIcon"/>
-                Sign Out
-            </Link>
+          <Link to="/user" className="main-nav-item">
+            <FontAwesomeIcon
+              icon={faUserCircle}
+              className="main-nav-item__signInIcon"
+            />
+            {temporaryName}
+          </Link>
+          <button className="main-nav-item logOutButton" onClick={handleLogOut}>
+            <FontAwesomeIcon
+              icon={faRightFromBracket}
+              className="main-nav-item__signInIcon"
+            />
+            Sign Out
+          </button>
         </div>
-    ) : 
-    (
+      ) : (
         <Link to="/login" className="main-nav-item">
-          <FontAwesomeIcon icon={faUserCircle} className="main-nav-item__signInIcon"/>
-          Sign In    
+          <FontAwesomeIcon
+            icon={faUserCircle}
+            className="main-nav-item__signInIcon"
+          />
+          Sign In
         </Link>
       )}
     </div>
-);
+  );
 };
 
-export default Log
+export default Log;
