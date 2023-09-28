@@ -10,11 +10,12 @@ const temporaryName = "John Doe";
 const Log = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
-  const logState = useSelector((state) => state.isLogged);
+  const logState = useSelector((state) => state.auth.isLogged);
 
   const handleLogOut = () => {
-    dispatch({ type: "isLogged/logout" });
-    navigate("/login"); 
+    dispatch({ type: "auth/logout" });
+    navigate("/login");
+    localStorage.removeItem("authToken"); 
   };
 
 

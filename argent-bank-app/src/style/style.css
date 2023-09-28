@@ -68,6 +68,20 @@ body {
   background-color: white;
 }
 
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important; /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important; /* 3 */
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -164,16 +178,26 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important; /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important; /* 3 */
+}
+
 .loginPageContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
   min-height: 100vh;
-  background-color: #12002b;
-}
-
-.mainLogInSection {
   background-color: #12002b;
 }
 
@@ -190,7 +214,6 @@ body {
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin-bottom: 1rem;
 }
 
 .inputField label {
@@ -198,17 +221,29 @@ body {
   font-weight: bold;
 }
 
-.inputField input {
+.loginInputField--input {
   padding: 5px;
   font-size: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
 .input-remember {
   display: flex;
+  margin-bottom: 1rem;
 }
 
-.input-remember label {
+.loginLabel {
   margin-left: 0.25rem;
+  color: #12002b;
+  font-weight: bold;
+}
+
+.error-message {
+  color: red;
+  font-size: 1rem;
+  margin-top: 1rem;
 }
 
 .accountsPageContainer {
