@@ -137,11 +137,20 @@ import Footer from "../components/Footer"
 
 
 const LoginPage = () => {
+ 
   const [rememberMe, setRememberMe] = useState(false);
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, reset} = useForm({
+    defaultValues: {
+      userName: "",
+      password: ""
+    }
+  });
+  
   const logState = useSelector((state) => state.auth.isLogged);
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState(null);
+  let userNameValue = "";
+  let passwordValue = "";
   
   useEffect(() => {
     if (logState) {
@@ -152,11 +161,13 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   
   const [shouldRedirect, setShouldRedirect] = useState(false);
+
+  
   
   const onSubmit = (data) => {
     console.log(data)
-    let userNameValue = "";
-    let passwordValue = "";
+    // let userNameValue = "";
+    // let passwordValue = "";
     userNameValue = data.userName;
     passwordValue = data.password;
     const user = {
@@ -174,18 +185,18 @@ const LoginPage = () => {
       .then((response) => response.json())
       
       .then((data) => {
-        console.log("Success:", data);
-        console.log("token", data.body.token);
+        // console.log("Success:", data);
+        // console.log("token", data.body.token);
         const token = data.body.token;
         
         if (token) {
           dispatch({
             type: "auth/login",
             isLogged:true, 
-            token: token, 
-            userName: userNameValue
           });
+          sessionStorage.setItem("authToken", token);
           setShouldRedirect(true);
+          reset();
         }
 
         if (rememberMe) {
@@ -194,7 +205,7 @@ const LoginPage = () => {
       })
 
       .catch((error) => {
-        console.error("Erreur lors de la requête fetch :", error);
+        console.error("Eroor during fetch request :", error);
         setErrorMessage("Invalid username or password, please try again.");
       }
       );
@@ -207,6 +218,7 @@ const LoginPage = () => {
 })
 
 console.log("localstorage", localStorage.getItem("authToken"))
+console.log("sessionstorage", sessionStorage.getItem("authToken"))
 
   return (
         <div className="loginPageContainer">
@@ -221,14 +233,16 @@ console.log("localstorage", localStorage.getItem("authToken"))
                   <input {...register('userName')}
                     type= "text"
                     name="userName"
-                    className="loginInputField--input"  
+                    className="loginInputField--input"
+                    autoComplete="off"  
                     />
                   <div className="loginBetWeen"></div>
                   <label className="loginLabel">Password</label>
                   < input {...register('password')}
                     type="password"
                     name="password"
-                    className="loginInputField--input"           
+                    className="loginInputField--input"
+                    autoComplete="off"           
                    />
                 </div>
                 <div className="input-remember">

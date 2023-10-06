@@ -24,7 +24,6 @@ module.exports.createUser = async (serviceData) => {
 
     return result;
   } catch (error) {
-    console.error("Error in userService.js", error);
     throw new Error(error);
   }
 };
@@ -35,6 +34,8 @@ module.exports.getUserProfile = async (serviceData) => {
       .split("Bearer")[1]
       .trim();
     const decodedJwtToken = jwt.decode(jwtToken);
+
+    console.log(decodedJwtToken);
     const user = await User.findOne({ _id: decodedJwtToken.id });
 
     if (!user) {
@@ -50,7 +51,7 @@ module.exports.getUserProfile = async (serviceData) => {
 
 module.exports.loginUser = async (serviceData) => {
   try {
-    // const user = await User.findOne({ email: serviceData.email })
+    // const user = await User.findOne({ email: serviceData.email });
     const user = await User.findOne({ userName: serviceData.userName });
 
     if (!user) {

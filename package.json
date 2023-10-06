@@ -21,6 +21,7 @@
     "mongoose": "^5.9.21",
     "npm": "^10.1.0",
     "react-hook-form": "^7.46.2",
+    
     "swagger-ui-express": "^4.1.4",
     "yamljs": "^0.3.0"
   },

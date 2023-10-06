@@ -126,9 +126,9 @@ definitions:
         description: user public name
   Login:
     properties:
-      userName:
+      UserName:
         type: string
-        description: user userName
+        description: user userName 
       password:
         type: string
         description: user password
