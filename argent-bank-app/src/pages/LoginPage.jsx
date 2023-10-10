@@ -130,6 +130,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import {useForm} from "react-hook-form"
 import {useDispatch, useSelector } from "react-redux"
+// import { loginCall } from "../apiCalls"
 // import Field, {FIELD_TYPES} from "../components/Field"
 import Button, {BUTTON_TYPES} from "../components/Button"
 import Header from "../components/Header"
@@ -217,8 +218,8 @@ const LoginPage = () => {
   }
 })
 
-console.log("localstorage", localStorage.getItem("authToken"))
-console.log("sessionstorage", sessionStorage.getItem("authToken"))
+// console.log("localstorage", localStorage.getItem("authToken"))
+// console.log("sessionstorage", sessionStorage.getItem("authToken"))
 
   return (
         <div className="loginPageContainer">

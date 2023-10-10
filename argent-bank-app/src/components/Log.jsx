@@ -1,48 +1,31 @@
 // import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector} from "react-redux";
-import {getProfile} from "../apiCalls"
-import {loadUserProfile, saveUserProfile} from "../redux"
+// import {getProfile} from "../apiCalls"
+// import {loadUserProfile, saveUserProfile} from "../redux"
+import { fetchUserProfile } from "../redux";
 import "../style/style.css";
 
 
 
 const Log = () => {
-  const [firstName, setFirstName] = useState(""); 
+  // const [firstName, setFirstName] = useState(""); 
   const logState = useSelector((state) => state.auth.isLogged);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (logState) {
-  //     const getData = async () => {
-  //       getProfile(logState).then((response) =>
-  //         dispatch({
-  //           type: "userData/profile",
-  //           payload: response.data.body,
-  //         })
-  //       );    
-  //     };
-  //     getData();
-  //   }
-  // }, [dispatch, logState]);
 
   useEffect(() => {
     if (logState) {
-      dispatch(loadUserProfile());
-      getProfile(logState)
-        .then((response) => {
-          console.log("response ", response);
-          const firstNameFromApi = response.firstName;
-          setFirstName(firstNameFromApi);
-          dispatch(saveUserProfile(response));
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      dispatch(fetchUserProfile());
     }
   }, [dispatch, logState]);
+
+  const profile = useSelector((state) => state.userData.profile);
+  console.log("profile ", profile);
+  const firstNameFromApi = profile.firstName;
+ 
  
   const navigate = useNavigate(); 
  
@@ -64,7 +47,7 @@ const Log = () => {
               icon={faUserCircle}
               className="main-nav-item__signInIcon"
             />
-            {firstName}
+            {firstNameFromApi}
           </Link>
           <button className="main-nav-item logOutButton" onClick={handleLogOut}>
             <FontAwesomeIcon

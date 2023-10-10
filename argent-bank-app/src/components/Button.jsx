@@ -20,6 +20,18 @@ const Button = ({ title, onClick, type, disabled, children }) => {
           title={title}
         />
       );
+      case BUTTON_TYPES.GREEN:
+      return (
+        <button
+          type=""
+          disabled={disabled}
+          className="greenButton"
+          onClick={onClick}
+          title={title}
+        >
+          {children}
+        </button>
+      );
     case BUTTON_TYPES.PRESSABLE:
       return (
         <button

@@ -1,5 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAction } from "@reduxjs/toolkit";
 import { configureStore, createSelector } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { getProfile, changeAccount } from "./apiCalls";
 // import { getProfile } from "./apiCalls";
 
 // const POST_ProfileURL = "http://localhost:3001/api/v1/user/profile";
@@ -7,88 +9,77 @@ import { configureStore, createSelector } from "@reduxjs/toolkit";
 const Token =
   localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
 
-// export const fetchUserProfile = createAsyncThunk(
-//   "user/fetchUserProfile",
-//   async () => {
-//     try {
-//       const response = await fetch(POST_ProfileURL, {
-//         method: "POST",
-//         headers: {
-//           Authorization: `Bearer ${Token}`,
-//         },
-//       });
+export const saveUserProfile = createAction("user/saveUserProfile");
 
-//       if (!response.ok) {
-//         throw new Error("Something went wrong with the profile's request");
-//       }
+export const fetchUserProfile = createAsyncThunk(
+  "user/fetchUserProfile",
+  async () => {
+    try {
+      const response = await getProfile();
+      console.log("response, ", response);
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
 
-//       const data = await response.json();
-//       return data.body;
-//     } catch (error) {
-//       console.error(error);
-//       throw error;
-//     }
-//   }
-// );
+export const fetchChangeAccount = createAsyncThunk(
+  "user/fetchChangeAccount",
+  async (user) => {
+    try {
+      const response = await changeAccount(user);
+      console.log("response from redux's change account, ", response);
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLogged: !!Token,
-    // user: "",
   },
   reducers: {
     login: (state, action) => {
       state.isLogged = true;
-      // state.user = action.payload;
     },
     logout: (state) => {
       state.isLogged = false;
-      // state.user = "";
     },
   },
 });
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: "userData",
   initialState: {
-    profile: {
-      // userName: "",
-      // firstName: "",
-      // lastName: "",
-      // emailAddress: "",
-      // id: "",
-    },
-    loading: "idle",
+    profile: {},
+    isLoading: false,
     error: null,
   },
-  reducers: {
-    loadUserProfile: (state, action) => {
-      state.loading = "pending";
+  extraReducers: {
+    [fetchUserProfile.pending]: (state) => {
+      state.loading = true;
     },
-    saveUserProfile: (state, action) => {
+    [fetchUserProfile.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.profile = action.payload;
+    },
+    [fetchUserProfile.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    },
+    [saveUserProfile]: (state, action) => {
       state.profile = action.payload;
     },
   },
-  // {
-  //   extraReducers: (builder) => {
-  //     builder
-  //       .addCase(fetchUserProfile.pending, (state) => {
-  //         state.loading = "pending";
-  //       })
-  //       .addCase(fetchUserProfile.fulfilled, (state, action) => {
-  //         state.loading = "idle";
-  //         state.profile = action.payload.body;
-  //       })
-  //       .addCase(fetchUserProfile.rejected, (state, action) => {
-  //         state.loading = "idle";
-  //         state.error = action.error.message;
-  //       });
-  //   },
-  // },
 });
 
-export const { loadUserProfile, saveUserProfile } = userSlice.actions;
+export const { loadUserProfile } = userSlice.actions;
 
 export const selectUserProfile = (state) => state.userData.profile;
 
