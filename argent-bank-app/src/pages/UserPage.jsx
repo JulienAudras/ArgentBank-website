@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import User from "../components/User"
 
 const UserPage = () => {
+
   return (
     <div className="userPageContainer">
     <Header />

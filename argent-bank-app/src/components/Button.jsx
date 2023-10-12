@@ -13,7 +13,7 @@ const Button = ({ title, onClick, type, disabled, className, children }) => {
       return (
         <input
           disabled={disabled}
-          className="submitButton"
+          className={className}
           type="submit"
           value={children}
           onClick={onClick}
@@ -25,7 +25,7 @@ const Button = ({ title, onClick, type, disabled, className, children }) => {
         <button
           type=""
           disabled={disabled}
-          className="greenButton"
+          className={className}
           onClick={onClick}
           title={title}
         >
@@ -49,7 +49,7 @@ const Button = ({ title, onClick, type, disabled, className, children }) => {
         <button
           type="button"
           disabled={disabled}
-          className="Button"
+          className={className}
           data-testid="button-test-id"
           onClick={onClick}
           title={title}

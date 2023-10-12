@@ -1,21 +1,26 @@
 import { useState } from "react";
 import {useForm} from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
-import { fetchChangeAccount, saveUserProfile } from "../redux";
+import {useNavigate} from "react-router-dom";
+import { fetchChangeAccount, saveUserProfile} from "../redux";
+import { changeUserSlice } from "../redux";
 import Button, {BUTTON_TYPES} from "../components/Button";
 import "../style/style.css";
 
-const User = () => {
+const User = ({isOpen}) => {
     const dispatch = useDispatch();
     const profile = useSelector((state) => state.userData.profile);
-    // console.log("initialUserName ", initialUserName);
-    // const firstNameFromApi = profile.firstName;
-    // const [originalUserName, setOriginalUserName] = useState(profile.userName);
     const [userName, setUserName] = useState(profile.userName);
-    // const lastName = profile.lastName;
-    // const firstName= profile.firstName;
     const [lastName, setLastName] = useState(profile.lastName);
     const [firstName, setFirstName] = useState(profile.firstName);
+    const navigate = useNavigate();
+    // const isOpenState = useSelector((state) => state.changeUser.isOpen);
+    const openChangeUser  = changeUserSlice.actions.openChangeUser;
+    const closeChangeUser  = changeUserSlice.actions.closeChangeUser;
+    const isUserVisible = useSelector((state) => state.changeUser.isOpen);
+    if (window.location.pathname === "/user") {
+        dispatch(openChangeUser());}
+    
 
     const {register, handleSubmit} = useForm({
         defaultValues: {
@@ -26,9 +31,6 @@ const User = () => {
       });
 
     const onSubmit = async (data) => {
-        // if(event){
-        // event.preventDefault();
-        // }        
         console.log("data on submit user form", data);
         try{
             const user = {
@@ -49,18 +51,25 @@ const User = () => {
         console.log("saveduserProfile ", profile);
 
     }
- 
 
-
-
+    const handleCancel = () => {
+        if (window.location.pathname === "/user") {
+            dispatch(closeChangeUser());
+            navigate("/accounts");
+        } else{
+            dispatch(closeChangeUser());
+        }
+    }
+            
+    if (isUserVisible) {
   return (
     <div>
         <h2>Edit user info</h2>
         <form className="editUserForm" onSubmit={handleSubmit(onSubmit)}>
-            <div className="editUserForm__Container">
-                <label className="editUserForm__Container--label">User name:</label>
+            <div className="editUserForm__container">
+                <label className="editUserForm__container--label">User name:</label>
                 <input {...register("userName")}
-                    className="editUserForm__Container--input"
+                    className="editUserForm__container--input"
                     type="text" 
                     name="userName" 
                     defaultValue={userName}
@@ -68,10 +77,10 @@ const User = () => {
                 />
             </div>
             
-            <div className="editUserForm__Container">
-                <label className="editUserForm__Container--label">First name:</label>
+            <div className="editUserForm__container">
+                <label className="editUserForm__container--label">First name:</label>
                 <input {...register("firstName")}
-                    className="editUserForm__Container--input greyedOut"
+                    className="editUserForm__container--input greyedOut"
                     type="text" 
                     name="firstName" 
                     value={firstName}
@@ -80,10 +89,10 @@ const User = () => {
                 />
             </div>
             
-            <div className="editUserForm__Container">
-                <label className="editUserForm__Container--label">Last name:</label>
+            <div className="editUserForm__container">
+                <label className="editUserForm__container--label">Last name:</label>
                 <input {...register("lastName")}
-                    className="editUserForm__Container--input greyedOut" 
+                    className="editUserForm__container--input greyedOut" 
                     type="text" 
                     name="lastName" 
                     value={lastName}
@@ -92,18 +101,18 @@ const User = () => {
                 />
             </div>
 
-            <div className="editUserForm__Container">
+            <div className="editUserForm__container">
                 <Button 
                     type={BUTTON_TYPES.SUBMIT}  
-                    title="Sign In" 
-                    className="signInPageButton">
+                    title="Sign In"
+                    className="editUserForm__container--submitButton" 
+                   >
                     Save
                 </Button>
                 <Button 
-                type={BUTTON_TYPES.Green}
                 title="Cancel"
-                className="CancelButton"
-                // onClick={handleCancel}
+                className="editUserForm__container--cancelButton"
+                onClick={handleCancel}
 
                 >
                     Cancel
@@ -111,7 +120,10 @@ const User = () => {
             </div> 
         </form>   
     </div>
-  )
+  );
+} else {
+    return null;
+}
 }
 
 export default User

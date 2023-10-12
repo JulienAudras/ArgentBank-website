@@ -79,6 +79,21 @@ export const userSlice = createSlice({
   },
 });
 
+export const changeUserSlice = createSlice({
+  name: "changeUser",
+  initialState: {
+    isOpen: true,
+  },
+  reducers: {
+    openChangeUser: (state) => {
+      state.isOpen = true;
+    },
+    closeChangeUser: (state) => {
+      state.isOpen = false;
+    },
+  },
+});
+
 export const { loadUserProfile } = userSlice.actions;
 
 export const selectUserProfile = (state) => state.userData.profile;
@@ -92,5 +107,6 @@ export const Store = configureStore({
   reducer: {
     auth: authSlice.reducer,
     userData: userSlice.reducer,
+    changeUser: changeUserSlice.reducer,
   },
 });
