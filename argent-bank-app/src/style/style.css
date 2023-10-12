@@ -45,6 +45,7 @@ body {
   background-color: #00bc77;
   color: #fff;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .greenButton {
@@ -64,6 +65,7 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+  cursor: pointer;
 }
 
 .footer {
@@ -271,6 +273,27 @@ body {
   justify-content: space-between;
   height: 100vh;
   min-height: 100vh;
+  background-color: #12002b;
+}
+.accountsPageContainer__topSection {
+  flex: 1;
+  margin-top: 5rem;
+}
+.accountsPageContainer__topSection--title {
+  color: white;
+}
+.accountsPageContainer__topSection--button {
+  background-color: #00bc77;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-color: #00bc77;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.accountsPageContainer__topSection--button:hover {
+  border: 0.2rem solid #12002b;
 }
 
 .main-nav-item {
@@ -353,4 +376,30 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+}
+
+.errorPageContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
+}
+.errorPageContainer__content {
+  flex: 1;
+  margin-top: 5rem;
+}
+.errorPageContainer__content--button {
+  background-color: #00bc77;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-color: #00bc77;
+  width: 15%;
+  margin: auto;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.errorPageContainer__content--button:hover {
+  border: 0.2rem solid #fff;
 }/*# sourceMappingURL=style.css.map */

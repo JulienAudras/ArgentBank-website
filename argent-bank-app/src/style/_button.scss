@@ -16,6 +16,7 @@
     background-color: #00bc77;
     color: #fff;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .greenButton{
@@ -35,5 +36,22 @@
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
+    cursor: pointer;
 }
+
+// .properButton{
+//     background-color: #00bc77;
+//     color: #fff;
+//     padding:0.5rem;
+//     font-size: 1.1rem;
+//     font-weight: bold;
+//     border-color: #00bc77;
+//     cursor: pointer;
+//     transition: color 0.2s ease-in-out;
+
+//     &:hover{
+//         border: 0.2rem solid #12002b;
+//     }
+    
+// }
 

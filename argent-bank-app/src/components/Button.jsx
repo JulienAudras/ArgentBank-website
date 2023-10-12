@@ -7,7 +7,7 @@ export const BUTTON_TYPES = {
   PRESSABLE: 2
 };
 
-const Button = ({ title, onClick, type, disabled, children }) => {
+const Button = ({ title, onClick, type, disabled, className, children }) => {
   switch (type) {
     case BUTTON_TYPES.SUBMIT:
       return (
@@ -37,7 +37,7 @@ const Button = ({ title, onClick, type, disabled, children }) => {
         <button
           type=""
           disabled={disabled}
-          className="properButton"
+          className={className}
           onClick={onClick}
           title={title}
         >
