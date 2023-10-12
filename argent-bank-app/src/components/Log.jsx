@@ -24,7 +24,7 @@ const Log = () => {
 
   const profile = useSelector((state) => state.userData.profile);
   console.log("profile ", profile);
-  const firstNameFromApi = profile.firstName;
+  const userNameFromApi = profile.userName;
  
  
   const navigate = useNavigate(); 
@@ -47,7 +47,7 @@ const Log = () => {
               icon={faUserCircle}
               className="main-nav-item__signInIcon"
             />
-            {firstNameFromApi}
+            {userNameFromApi}
           </Link>
           <button className="main-nav-item logOutButton" onClick={handleLogOut}>
             <FontAwesomeIcon

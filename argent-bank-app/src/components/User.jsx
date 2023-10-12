@@ -8,7 +8,6 @@ import "../style/style.css";
 const User = () => {
     const dispatch = useDispatch();
     const profile = useSelector((state) => state.userData.profile);
-    const initialUserName = profile.userName;
     // console.log("initialUserName ", initialUserName);
     // const firstNameFromApi = profile.firstName;
     // const [originalUserName, setOriginalUserName] = useState(profile.userName);
