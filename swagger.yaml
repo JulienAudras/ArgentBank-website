@@ -101,6 +101,29 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /account/{userId}:
+    get:
+      tags:
+        - Account Module
+      summary: Get User Accounts
+      description: API to fetch user accounts by userId
+      parameters:
+        - name: userId
+          in: path
+          description: User ID
+          required: true
+          type: string
+      security:
+        - Bearer: []
+      responses:
+        '200':
+          description: User accounts retrieved successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -156,3 +179,21 @@ definitions:
     properties:
       userName:
         type: string
+  Account:
+    properties:
+      user:
+        type: string 
+        description: User's Id connected to that account
+      accountName:
+        type: string
+        description: Account Name
+      accountNumber:
+        type: string
+        description: Account Number
+      balance:
+        type: number  
+        description: Balance of the account, in cents
+      currency:
+        type: string
+        description: Account's currency
+ 

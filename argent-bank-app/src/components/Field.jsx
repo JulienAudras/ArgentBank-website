@@ -18,6 +18,7 @@ const Field = ({ type = FIELD_TYPES.TEXT, label, name, placeholder, isRequired }
           name={name}
           placeholder={placeholder}
           {...(isRequired ? { required: true } : {})}
+          className="field"
         />
       );
       break;
@@ -28,6 +29,7 @@ const Field = ({ type = FIELD_TYPES.TEXT, label, name, placeholder, isRequired }
           name={name}
           placeholder={placeholder}
           {...(isRequired ? { required: true } : {})}
+          className="field"
 
         />
       );
@@ -39,6 +41,7 @@ const Field = ({ type = FIELD_TYPES.TEXT, label, name, placeholder, isRequired }
           name={name}
           placeholder={placeholder}
           {...(isRequired ? { required: true } : {})}
+          className="field"
         />
       );
       break;
@@ -49,6 +52,7 @@ const Field = ({ type = FIELD_TYPES.TEXT, label, name, placeholder, isRequired }
           name={name}
           placeholder={placeholder}
           {...(isRequired ? { required: true } : {})}
+          className="field"
         />
       );
   }

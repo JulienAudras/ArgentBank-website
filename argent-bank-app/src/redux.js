@@ -39,7 +39,7 @@ export const fetchChangeAccount = createAsyncThunk(
   }
 );
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLogged: !!Token,
@@ -54,6 +54,31 @@ const authSlice = createSlice({
   },
 });
 
+// export const userSlice = createSlice({
+//   name: "userData",
+//   initialState: {
+//     profile: {},
+//     isLoading: false,
+//     error: null,
+//   },
+//   extraReducers: {
+//     [fetchUserProfile.pending]: (state) => {
+//       state.loading = true;
+//     },
+//     [fetchUserProfile.fulfilled]: (state, action) => {
+//       state.loading = false;
+//       state.profile = action.payload;
+//     },
+//     [fetchUserProfile.rejected]: (state, action) => {
+//       state.loading = false;
+//       state.error = action.error.message;
+//     },
+//     [saveUserProfile]: (state, action) => {
+//       state.profile = action.payload;
+//     },
+//   },
+// });
+
 export const userSlice = createSlice({
   name: "userData",
   initialState: {
@@ -61,28 +86,29 @@ export const userSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
-    [fetchUserProfile.pending]: (state) => {
-      state.loading = true;
-    },
-    [fetchUserProfile.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.profile = action.payload;
-    },
-    [fetchUserProfile.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
-    [saveUserProfile]: (state, action) => {
-      state.profile = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUserProfile.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchUserProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.profile = action.payload;
+      })
+      .addCase(fetchUserProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(saveUserProfile, (state, action) => {
+        state.profile = action.payload;
+      });
   },
 });
 
 export const changeUserSlice = createSlice({
   name: "changeUser",
   initialState: {
-    isOpen: true,
+    isOpen: false,
   },
   reducers: {
     openChangeUser: (state) => {

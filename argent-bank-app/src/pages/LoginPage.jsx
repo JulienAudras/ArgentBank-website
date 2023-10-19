@@ -130,7 +130,9 @@ const LoginPage = () => {
                   />
                   <label htmlFor="remember-me">Remember me</label>
                 </div>
-                <Button type={BUTTON_TYPES.SUBMIT}  title="Sign In" className="signInPageButton">
+                <Button type={BUTTON_TYPES.SUBMIT}  
+                  title="Sign In" 
+                  className="signInPageButton">
                   Sign In
                 </Button>
                 {errorMessage && (

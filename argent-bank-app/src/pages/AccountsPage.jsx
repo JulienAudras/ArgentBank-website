@@ -4,12 +4,11 @@ import User from "../components/User";
 import Button, {BUTTON_TYPES} from "../components/Button";
 import {useSelector, useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState} from "react";
+import { useEffect} from "react";
 import { changeUserSlice } from "../redux";
 import "../style/style.css";
 
 const AccountsPage = () => {
-  // const dispatch = useDispatch()
   const logState = useSelector(state => state.auth.isLogged);
   const navigate = useNavigate();
   const profile = useSelector((state) => state.userData.profile);
@@ -19,20 +18,20 @@ const AccountsPage = () => {
   const userComponentState = useSelector((state) => state.changeUser.isOpen);
   console.log("userComponentState", userComponentState);
   
-  
-  
+  // S'assurer que User est fermé au chargement de la page
+  useEffect(() => {
+    dispatch(changeUserSlice.actions.closeChangeUser());
+  }, [dispatch])
+
   const hideUser = () => {
     dispatch(changeUserSlice.actions.closeChangeUser());
   }
   
-  
   const openChangeUser  = changeUserSlice.actions.openChangeUser;
-  
-  
+   
   const handleEdit = () => {
     dispatch(openChangeUser());
   }
-
 
   console.log("logstate", logState)
  
@@ -68,9 +67,9 @@ const AccountsPage = () => {
         </Button>
         )}
        
-       
+       <User className={"accountsPageContainer__userComponent"} />
       </div>
-      <User />
+      
       
       <Footer />
     </div>

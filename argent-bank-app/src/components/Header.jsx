@@ -4,7 +4,7 @@ import Logo from "./Logo"
 import Log from "./Log"
 import "../style/style.css"
 
-const Header = () => {
+export const Header = () => {
 
   const logState = useSelector((state) => state.auth.isLogged);
 

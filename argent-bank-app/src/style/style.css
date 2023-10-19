@@ -245,8 +245,7 @@ body {
 .loginInputField--input {
   padding: 5px;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #A4A4A4;
   margin-bottom: 1rem;
 }
 
@@ -265,6 +264,27 @@ body {
   color: red;
   font-size: 1rem;
   margin-top: 1rem;
+}
+
+.signInPageButton {
+  outline: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .accountsPageContainer {
@@ -294,6 +314,9 @@ body {
 }
 .accountsPageContainer__topSection--button:hover {
   border: 0.2rem solid #12002b;
+}
+.accountsPageContainer__userComponent {
+  color: #fff;
 }
 
 .main-nav-item {

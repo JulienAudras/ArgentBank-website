@@ -26,6 +26,7 @@
 export const getProfile = async () => {
   const token =
     localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+  console.log("tokenFromgetProfileCall, ", token);
 
   try {
     const response = await fetch("http://localhost:3001/api/v1/user/profile", {
@@ -69,6 +70,36 @@ export const changeAccount = async (user) => {
 
     const data = await response.json();
     console.log("dataFromchangeAccountCall, ", data);
+    return data.body;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+// Call to handle account's data
+export const getAccounts = async (userId) => {
+  const token =
+    localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+  console.log("tokenFromgetAccountCall, ", token);
+
+  try {
+    const response = await fetch(
+      `http://localhost:3001/api/v1/account/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Something went wrong with the account's request");
+    }
+
+    const data = await response.json();
+    console.log("dataFromgetAccountCall, ", data);
     return data.body;
   } catch (error) {
     console.error(error);

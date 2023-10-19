@@ -7,7 +7,7 @@ import { changeUserSlice } from "../redux";
 import Button, {BUTTON_TYPES} from "../components/Button";
 import "../style/style.css";
 
-const User = ({isOpen}) => {
+const User = ({className}) => {
     const dispatch = useDispatch();
     const profile = useSelector((state) => state.userData.profile);
     const [userName, setUserName] = useState(profile.userName);
@@ -15,11 +15,12 @@ const User = ({isOpen}) => {
     const [firstName, setFirstName] = useState(profile.firstName);
     const navigate = useNavigate();
     // const isOpenState = useSelector((state) => state.changeUser.isOpen);
-    const openChangeUser  = changeUserSlice.actions.openChangeUser;
+    
     const closeChangeUser  = changeUserSlice.actions.closeChangeUser;
-    const isUserVisible = useSelector((state) => state.changeUser.isOpen);
-    if (window.location.pathname === "/user") {
-        dispatch(openChangeUser());}
+    const userComponentState = useSelector((state) => state.changeUser.isOpen);
+    const hideUserComponent = () => {
+        dispatch(changeUserSlice.actions.closeChangeUser())
+ ;   }
     
 
     const {register, handleSubmit} = useForm({
@@ -31,7 +32,6 @@ const User = ({isOpen}) => {
       });
 
     const onSubmit = async (data) => {
-        console.log("data on submit user form", data);
         try{
             const user = {
                 userName: data.userName,
@@ -44,11 +44,16 @@ const User = ({isOpen}) => {
         if (response) {
             // response.setUserName(data.userName);
             dispatch(saveUserProfile({ ...profile, userName: data.userName }))
+            hideUserComponent();
         };
+        if (window.location.pathname === "/user") {
+            navigate("/accounts");
+        }
+
         }catch(error) {
             console.log("error from submit user form", error);
         }
-        console.log("saveduserProfile ", profile);
+        
 
     }
 
@@ -61,9 +66,9 @@ const User = ({isOpen}) => {
         }
     }
             
-    if (isUserVisible) {
+    if (userComponentState) {
   return (
-    <div>
+    <div className={className}>
         <h2>Edit user info</h2>
         <form className="editUserForm" onSubmit={handleSubmit(onSubmit)}>
             <div className="editUserForm__container">
@@ -105,15 +110,16 @@ const User = ({isOpen}) => {
                 <Button 
                     type={BUTTON_TYPES.SUBMIT}  
                     title="Sign In"
+                    data-testid="Save"
                     className="editUserForm__container--submitButton" 
                    >
                     Save
+
                 </Button>
                 <Button 
                 title="Cancel"
                 className="editUserForm__container--cancelButton"
                 onClick={handleCancel}
-
                 >
                     Cancel
                 </Button>
