@@ -1,11 +1,13 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import User from "../components/User";
+import Account from "../components/Account";
+// import {props} from "../components/Account";
 import Button, {BUTTON_TYPES} from "../components/Button";
 import {useSelector, useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect} from "react";
-import { changeUserSlice } from "../redux";
+import { changeUserSlice, fetchGetAccounts, fetchUserProfile } from "../redux";
 import "../style/style.css";
 
 const AccountsPage = () => {
@@ -16,9 +18,14 @@ const AccountsPage = () => {
   const lastNameFromApi = profile.lastName;
   const dispatch = useDispatch();
   const userComponentState = useSelector((state) => state.changeUser.isOpen);
-  console.log("userComponentState", userComponentState);
+  const userId = profile.id;
   
-  // S'assurer que User est fermé au chargement de la page
+  useEffect(() => {
+    if (!profile) {
+        dispatch(fetchUserProfile());
+    }
+}, [dispatch, profile]);
+
   useEffect(() => {
     dispatch(changeUserSlice.actions.closeChangeUser());
   }, [dispatch])
@@ -31,15 +38,15 @@ const AccountsPage = () => {
    
   const handleEdit = () => {
     dispatch(openChangeUser());
+   
   }
 
-  console.log("logstate", logState)
  
   useEffect(() => {
     if (!logState) {
       navigate("/login")
     }
-  })
+  });
 
   useEffect(() => {
     if (!userComponentState) {
@@ -47,6 +54,20 @@ const AccountsPage = () => {
     }
   })
 
+  useEffect(() => {
+    dispatch(fetchGetAccounts(userId));
+  }, [dispatch, logState, userId]);
+
+  const accounts = useSelector((state) => state.accounts.accounts);
+  console.log(accounts);
+
+  if (!accounts) {
+    return (
+      <div className="accountsPageContainer">
+        Loading
+      </div>
+    )
+  }
   return (
 
     <div className="accountsPageContainer">
@@ -66,11 +87,18 @@ const AccountsPage = () => {
           Edit Name
         </Button>
         )}
-       
-       <User className={"accountsPageContainer__userComponent"} />
+        </div>
+        
+          <User className={"accountsPageContainer__userComponent"} />
+        
+      
+      
+      <div className="accountsPageContainer__mainSection">
+        {accounts.map(account => (
+          <Account key={account.id} {...account} />
+        ))}
       </div>
-      
-      
+
       <Footer />
     </div>
   )

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {useForm} from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import { fetchChangeAccount, saveUserProfile} from "../redux";
+import {fetchUserProfile, fetchChangeAccount, saveUserProfile} from "../redux";
 import { changeUserSlice } from "../redux";
 import Button, {BUTTON_TYPES} from "../components/Button";
 import "../style/style.css";
@@ -10,28 +10,37 @@ import "../style/style.css";
 const User = ({className}) => {
     const dispatch = useDispatch();
     const profile = useSelector((state) => state.userData.profile);
+    console.log("profile from user", profile);
     const [userName, setUserName] = useState(profile.userName);
     const [lastName, setLastName] = useState(profile.lastName);
     const [firstName, setFirstName] = useState(profile.firstName);
     const navigate = useNavigate();
     // const isOpenState = useSelector((state) => state.changeUser.isOpen);
-    
     const closeChangeUser  = changeUserSlice.actions.closeChangeUser;
     const userComponentState = useSelector((state) => state.changeUser.isOpen);
     const hideUserComponent = () => {
         dispatch(changeUserSlice.actions.closeChangeUser())
  ;   }
     
-
-    const {register, handleSubmit} = useForm({
-        defaultValues: {
-            userName: profile.userName,
-            firstName: profile.firstName,
-            lastName: profile.lastName,
+    useEffect(() => {
+        if (!profile) {
+            dispatch(fetchUserProfile());
         }
-      });
+    }, [dispatch, profile]);
+    
+
+    const { register, handleSubmit, setValue } = useForm();
+
+    useEffect(() => {
+    if (profile) {
+        setValue("userName", profile.userName);
+        setValue("firstName", profile.firstName);
+        setValue("lastName", profile.lastName);
+    }
+    }, [profile, setValue]);
 
     const onSubmit = async (data) => {
+        
         try{
             const user = {
                 userName: data.userName,
@@ -53,8 +62,6 @@ const User = ({className}) => {
         }catch(error) {
             console.log("error from submit user form", error);
         }
-        
-
     }
 
     const handleCancel = () => {
@@ -65,8 +72,7 @@ const User = ({className}) => {
             dispatch(closeChangeUser());
         }
     }
-            
-    if (userComponentState) {
+    if (userComponentState && profile) {
   return (
     <div className={className}>
         <h2>Edit user info</h2>

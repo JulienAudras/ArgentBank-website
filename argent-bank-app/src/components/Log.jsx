@@ -23,7 +23,7 @@ const Log = () => {
   }, [dispatch, logState]);
 
   const profile = useSelector((state) => state.userData.profile);
-  console.log("profile ", profile);
+  
   const userNameFromApi = profile.userName;
  
  

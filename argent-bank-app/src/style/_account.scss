@@ -1,0 +1,93 @@
+.account{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #fff;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: row;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align: left;
+    margin-bottom: 2rem;
+    @media (max-width: 720px) {
+        flex-direction: column;
+    }
+
+    &__accountContentWrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        
+
+        &--name {
+            color:#2c3e50; 
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        &--balance{
+            color:#2c3e50;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;  
+        }
+        &--availableBalance{
+            color:#2c3e50;
+            margin:0;
+            
+        }
+
+        &--button{
+            display: block;
+            min-width: 180px;
+            width: 30%;
+            padding: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-left: auto;
+            border-color: #00bc77;
+            background-color: #00bc77;
+            color: #fff;
+            &:hover{
+                border: 0.2rem solid #12002b;
+            }
+            @media (max-width: 720px) {
+                width:100%
+            }
+            
+        }
+    }
+
+    .hidden{
+        display: none;
+    }
+
+ 
+    // &__accountActions{
+    //     width:15%;
+    //     display: flex;
+        
+    //     &--button{
+    //         background-color: #00bc77;
+    //         color: #fff;
+    //         padding:8px;
+    //         font-size: 1.1rem;
+    //         font-weight: bold;
+    //         border-color: #00bc77;
+    //         margin:auto;
+    //         cursor: pointer;
+    //         transition: color 0.2s ease-in-out;
+    //         &:hover{
+    //             border: 0.2rem solid #12002b;
+    //         }
+    //     }
+        
+    // }
+
+
+}

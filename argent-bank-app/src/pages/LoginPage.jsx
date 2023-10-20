@@ -42,7 +42,7 @@ const LoginPage = () => {
   
   
   const onSubmit = (data) => {
-    console.log(data)
+   
     // let userNameValue = "";
     // let passwordValue = "";
     userNameValue = data.userName;
@@ -82,7 +82,7 @@ const LoginPage = () => {
       })
 
       .catch((error) => {
-        console.error("Eroor during fetch request :", error);
+        console.error("Error during fetch request :", error);
         setErrorMessage("Invalid username or password, please try again.");
       }
       );

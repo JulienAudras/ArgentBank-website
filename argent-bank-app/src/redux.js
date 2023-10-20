@@ -1,10 +1,7 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
 import { configureStore, createSelector } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getProfile, changeAccount } from "./apiCalls";
-// import { getProfile } from "./apiCalls";
-
-// const POST_ProfileURL = "http://localhost:3001/api/v1/user/profile";
+import { getProfile, changeAccount, getAccounts } from "./apiCalls";
 
 const Token =
   localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
@@ -16,7 +13,6 @@ export const fetchUserProfile = createAsyncThunk(
   async () => {
     try {
       const response = await getProfile();
-      console.log("response, ", response);
       return response;
     } catch (error) {
       console.error(error);
@@ -39,6 +35,22 @@ export const fetchChangeAccount = createAsyncThunk(
   }
 );
 
+export const fetchGetAccounts = createAsyncThunk(
+  "accounts/fetchGetAccounts",
+  async (userId) => {
+    if (userId) {
+      try {
+        const response = await getAccounts(userId);
+
+        return response;
+      } catch (error) {
+        console.error(error, "error in redux's get accounts");
+        throw error;
+      }
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -53,31 +65,6 @@ export const authSlice = createSlice({
     },
   },
 });
-
-// export const userSlice = createSlice({
-//   name: "userData",
-//   initialState: {
-//     profile: {},
-//     isLoading: false,
-//     error: null,
-//   },
-//   extraReducers: {
-//     [fetchUserProfile.pending]: (state) => {
-//       state.loading = true;
-//     },
-//     [fetchUserProfile.fulfilled]: (state, action) => {
-//       state.loading = false;
-//       state.profile = action.payload;
-//     },
-//     [fetchUserProfile.rejected]: (state, action) => {
-//       state.loading = false;
-//       state.error = action.error.message;
-//     },
-//     [saveUserProfile]: (state, action) => {
-//       state.profile = action.payload;
-//     },
-//   },
-// });
 
 export const userSlice = createSlice({
   name: "userData",
@@ -120,6 +107,30 @@ export const changeUserSlice = createSlice({
   },
 });
 
+export const accountSlice = createSlice({
+  name: "accounts",
+  initialState: {
+    accounts: [],
+    isLoading: false,
+    error: null,
+  },
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchGetAccounts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchGetAccounts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.accounts = action.payload;
+      })
+      .addCase(fetchGetAccounts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
+  },
+});
+
 export const { loadUserProfile } = userSlice.actions;
 
 export const selectUserProfile = (state) => state.userData.profile;
@@ -134,5 +145,6 @@ export const Store = configureStore({
     auth: authSlice.reducer,
     userData: userSlice.reducer,
     changeUser: changeUserSlice.reducer,
+    accounts: accountSlice.reducer,
   },
 });
