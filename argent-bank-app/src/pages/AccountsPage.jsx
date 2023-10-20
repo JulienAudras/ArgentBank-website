@@ -95,7 +95,7 @@ const AccountsPage = () => {
       
       <div className="accountsPageContainer__mainSection">
         {accounts.map(account => (
-          <Account key={account.id} {...account} />
+          <Account key={account._id} {...account} />
         ))}
       </div>
 

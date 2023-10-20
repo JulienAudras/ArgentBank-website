@@ -1,7 +1,8 @@
 .accountsPageContainer{
     display: flex;
     flex-direction: column;
-    justify-content:start;
+    justify-content: space-around;
+    align-content: space-around;
     height: 100vh;
     min-height: 100vh;
     background-color: #12002b;
@@ -9,8 +10,8 @@
       &__topSection{
         flex: 1;
         margin-top: 5rem;
-        height: 18%;
-        max-height: 18%;
+        margin-bottom: 1rem;
+        flex: 1;
 
         &--title{
           color:white
@@ -33,15 +34,10 @@
 
       &__userComponent{
         color:#fff;
-        position: relative;
-        top:-40px;
-        
       }
 
       &__mainSection{
-        margin-bottom: auto;
+        background-color:#12002b;
+        flex:4;
       }
-
-      
-
   }

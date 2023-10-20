@@ -83,7 +83,7 @@ body {
   color: #fff;
 }
 .account__accountContentWrapper--button:hover {
-  border: 0.2rem solid #12002b;
+  border: 0.2rem solid #fff;
 }
 @media (max-width: 720px) {
   .account__accountContentWrapper--button {
@@ -357,7 +357,8 @@ body {
 .accountsPageContainer {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-around;
+  align-content: space-around;
   height: 100vh;
   min-height: 100vh;
   background-color: #12002b;
@@ -365,8 +366,8 @@ body {
 .accountsPageContainer__topSection {
   flex: 1;
   margin-top: 5rem;
-  height: 18%;
-  max-height: 18%;
+  margin-bottom: 1rem;
+  flex: 1;
 }
 .accountsPageContainer__topSection--title {
   color: white;
@@ -386,11 +387,10 @@ body {
 }
 .accountsPageContainer__userComponent {
   color: #fff;
-  position: relative;
-  top: -40px;
 }
 .accountsPageContainer__mainSection {
-  margin-bottom: auto;
+  background-color: #12002b;
+  flex: 4;
 }
 
 .main-nav-item {

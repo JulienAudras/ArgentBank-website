@@ -5,7 +5,7 @@ import "../style/style.css";
 
 
 const Account = (props) => {
-  const formattedBalance = props.balance.toLocaleString("en-US", { minimumFractionDigits: 2 });
+  const formattedBalance = (props.balance/100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const navigate = useNavigate();
   return (
     <div className="account" id={props._id}>
