@@ -119,9 +119,11 @@ paths:
         '200':
           description: User accounts retrieved successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
+            $ref: '#/definitions/AccountApiResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Account Not Found
         '500':
           description: Internal Server Error
   /transaction/{accountId}:
@@ -142,9 +144,11 @@ paths:
         '200':
           description: account transactions retrieved successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
+            $ref: '#/definitions/TransactionApiResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Account's transaction Not Found
         '500':
           description: Internal Server Error
   /transaction/{accountId}/{transactionId}/category:
@@ -159,15 +163,54 @@ paths:
           description: transaction ID
           required: true
           type: string
+        - name: body
+          in: body
+          description: Request body containing user input
+          required: true
+          schema:
+            type: object
+            properties:
+              userInputField:
+                type: string
       security:
         - Bearer: []
       responses:
         '200':
           description: transaction's category updated successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/TransactionApiResponse'
         '400':
           description: Invalid Fields
+        '401':
+          description: Unauthorized
+        '404':
+          description: Category's key Not Found
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+        - Transaction Module
+      summary: Delete Transaction's Category
+      description: API to delete transaction's category by transactionId
+      parameters:
+        - name: transactionId
+          in: path
+          description: transaction ID
+          required: true
+          type: string
+      security:
+        - Bearer: []
+      responses:
+        '204':
+          description: transaction's category deleted successfully
+          schema:
+            $ref: '#/definitions/TransactionApiResponse'
+        '400':
+          description: Invalid Fields
+        '401':
+          description: Unauthorized
+        '404':
+          description: Category's key Not Found
         '500':
           description: Internal Server Error
   /transaction/{accountId}/{transactionId}/note:
@@ -182,18 +225,91 @@ paths:
           description: transaction ID
           required: true
           type: string
+        - name: body
+          in: body
+          description: Request body containing user input
+          required: true
+          schema:
+            type: object
+            properties:
+              userInputField:
+                type: string  
+      security:
+        - Bearer: []
+      responses:
+        '201':
+          description: transaction's note added successfully
+          schema:
+            $ref: '#/definitions/TransactionApiResponse'
+        '400':
+          description: Invalid Fields
+        '401':
+          description: Unauthorized
+        '404':
+          description: Note's key Not Found
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+        - Transaction Module
+      summary: Update Transaction's Note
+      description: API to update transaction's note by transactionId
+      parameters:
+        - name: transactionId
+          in: path
+          description: transaction ID
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Request body containing user input
+          required: true
+          schema:
+            type: object
+            properties:
+              userInputField:
+                type: string
       security:
         - Bearer: []
       responses:
         '200':
-          description: transaction's note added successfully
+          description: transaction's note updated successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/TransactionApiResponse'
         '400':
           description: Invalid Fields
+        '401':
+          description: Unauthorized
+        '404':
+          description: Note's key Not Found
         '500':
           description: Internal Server Error
-
+    delete:
+      tags:
+        - Transaction Module
+      summary: Delete Transaction's Note
+      description: API to delete transaction's note by transactionId
+      parameters:
+        - name: transactionId
+          in: path
+          description: transaction ID
+          required: true
+          type: string
+      security:
+        - Bearer: []
+      responses:
+        '204':
+          description: transaction's note deleted successfully
+          schema:
+            $ref: '#/definitions/TransactionApiResponse'
+        '400':
+          description: Invalid Fields
+        '401':
+          description: Unauthorized
+        '404':
+          description: Note's key Not Found
+        '500':
+          description: Internal Server Error
   
 securityDefinitions:
   Bearer:
@@ -245,11 +361,34 @@ definitions:
     properties:
       token:
         type: string
+  AccountApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          $ref: '#/definitions/Account'
+  TransactionApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          $ref: '#/definitions/Transaction'
   UserProfile:
     type: object
     properties:
       userName:
         type: string
+  
   Account:
     properties:
       user:
