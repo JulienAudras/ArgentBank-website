@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Footer = () => {
   return (
     <footer className='footer'>
@@ -7,5 +5,4 @@ const Footer = () => {
     </footer>
   )
 }
-
 export default Footer

@@ -2,7 +2,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import User from "../components/User";
 import Account from "../components/Account";
-// import {props} from "../components/Account";
 import Button, {BUTTON_TYPES} from "../components/Button";
 import {useSelector, useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";

@@ -9,9 +9,9 @@ import {useDispatch, useSelector } from "react-redux"
 import Button, {BUTTON_TYPES} from "../components/Button"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import { loginUser } from "../apiCalls"
 
 const LoginPage = () => {
- 
   const [rememberMe, setRememberMe] = useState(false);
   const {register, handleSubmit, reset} = useForm({
     defaultValues: {
@@ -33,7 +33,6 @@ const LoginPage = () => {
   }, [logState, navigate]);
 
   const dispatch = useDispatch();
-  
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const onSubmit = (data) => {
@@ -45,45 +44,27 @@ const LoginPage = () => {
       password: passwordValue
     }
     
-    fetch("http://localhost:3001/api/v1/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user),
+    loginUser(user)
+    .then((token) => {
+      dispatch({
+        type: "auth/login",
+        isLogged: true,
+      });
+      sessionStorage.setItem("authToken", token);
+      setShouldRedirect(true);
+      reset();
     })
-      .then((response) => response.json())
-      
-      .then((data) => {
-        const token = data.body.token;
-        
-        if (token) {
-          dispatch({
-            type: "auth/login",
-            isLogged:true, 
-          });
-          sessionStorage.setItem("authToken", token);
-          setShouldRedirect(true);
-          reset();
-        }
-
-        if (rememberMe) {
-          localStorage.setItem("authToken", token);
-        }
-      })
-
-      .catch((error) => {
-        console.error("Error during fetch request :", error);
-        setErrorMessage("Invalid username or password, please try again.");
-      }
-      );
+    .catch((error) => {
+      console.error("Error during fetch request:", error);
+      setErrorMessage(error.message); 
+    });
   };
 
-  useEffect(() => {
-  if (shouldRedirect) {
-    navigate("/accounts") 
-  }
-})
+    useEffect(() => {
+    if (shouldRedirect) {
+      navigate("/accounts") 
+    }
+  })
 
   return (
         <div className="loginPageContainer">
@@ -92,8 +73,7 @@ const LoginPage = () => {
             <FontAwesomeIcon icon={faUserCircle} className="sign-in-content__userIcon"/>
             <h1>Sign In</h1>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="inputField">
-                
+                <div className="inputField">    
                   <label className="loginLabel">Username</label>
                   <input {...register('userName')}
                     type= "text"
@@ -134,6 +114,5 @@ const LoginPage = () => {
         </div>
       )
 }
-
 export default LoginPage
 

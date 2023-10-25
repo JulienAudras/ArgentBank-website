@@ -589,6 +589,20 @@ body {
   display: grid;
   grid-template-columns: 12% 12% auto;
 }
+.transactionContainer__transactionDetails--category--content--icon {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+.transactionContainer__transactionDetails--category--content--icon:hover {
+  transform: scale(1.2);
+}
+.transactionContainer__transactionDetails--notes--content--icon {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+.transactionContainer__transactionDetails--notes--content--icon:hover {
+  transform: scale(1.2);
+}
 
 .transactionsPageContainer {
   display: flex;

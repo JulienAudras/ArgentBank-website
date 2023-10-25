@@ -74,7 +74,5 @@ Button.defaultProps = {
   type: BUTTON_TYPES.DEFAULT,
   title: "",
   children: null,
-  cursor: "pointer"
 }
-
 export default Button;

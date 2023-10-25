@@ -37,20 +37,24 @@ const Transaction = (props) => {
         }}>
             <div className="transactionContainer__transactionDetails--type">
                 <span className="transactionContainer__transactionDetails--type--title">Type</span>
-                <span className="transactionContainer__transactionDetails--type--text">{props.transactionType}</span>
+                <span className="transactionContainer__transactionDetails--type--text">{props.transactionType}</span> 
             </div>
             <div className="transactionContainer__transactionDetails--category">
                 <span className="transactionContainer__transactionDetails--category--title">Category</span>
-                <span className="transactionContainer__transactionDetails--category--text">{props.category}</span>
+                <div className="transactionContainer__transactionDetails--category--content">
+                    <span className="transactionContainer__transactionDetails--category-content--text">{props.category}</span>
+                    <i className="transactionContainer__transactionDetails--category--content--icon fa-sharp fa-solid fa-pen"></i>
+                </div>
             </div>
             <div className="transactionContainer__transactionDetails--notes">
                 <span className="transactionContainer__transactionDetails--notes--title">Notes</span>
-                <span className="transactionContainer__transactionDetails--notes--text">{props.notes}</span>
+                <div className="transactionContainer__transactionDetails--notes--content">
+                    <span className="transactionContainer__transactionDetails--notes--content--text">{props.notes}</span>
+                    <i className="transactionContainer__transactionDetails--notes--content--icon fa-sharp fa-solid fa-pen"></i>
+                </div>
             </div>
         </div>
-
     </div>
   )
 }
-
 export default Transaction

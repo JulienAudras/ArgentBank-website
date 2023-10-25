@@ -1,27 +1,28 @@
-// Call to handle login/logout
-// export const loginCall = async () => {
-//   try {
-//     const response = await fetch("http://localhost:3001/api/v1/user/login", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ userName: "test", password: "test" }),
-//     });
+// Call to long-in user
+export const loginUser = async (user) => {
+  try {
+    const response = await fetch("http://localhost:3001/api/v1/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
 
-//     if (!response.ok) {
-//       throw new Error("Something went wrong with the login's request");
-//     }
+    if (!response.ok) {
+      throw new Error("Invalid username or password");
+    }
 
-//     const data = await response.json();
-//     console.log("dataFromloCallApi, ", data);
-//     return data.body;
-//   } catch (error) {
-//     console.error(error);
-//     throw error;
-//   }
-// };
+    const data = await response.json();
+    const token = data.body.token;
+    return token;
+  } catch (error) {
+    console.error("Error during API call:", error);
+    throw error;
+  }
+};
 
+// Call to get profile's data
 export const getProfile = async () => {
   const token =
     localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
@@ -38,7 +39,6 @@ export const getProfile = async () => {
       throw new Error("Something went wrong with the profile's request");
     }
     const data = await response.json();
-    console.log("dataFromProfileApi:", data);
     return data.body;
   } catch (error) {
     console.error(error);

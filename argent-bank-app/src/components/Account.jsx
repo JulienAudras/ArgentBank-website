@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 import {setSelectedAccount} from "../redux";
 import "../style/style.css";
 
-
-
 const Account = (props) => {
   const dispatch = useDispatch();
   const formattedBalance = (props.balance/100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -35,7 +33,6 @@ const Account = (props) => {
         {props.isOnTransactionsPage ? (
           <Button
           type={BUTTON_TYPES.PRESSABLE}
-          cursor="pointer"
           onClick={handleBackToaccountsClick}
           className="account__accountContentWrapper--button"
         >
@@ -46,7 +43,6 @@ const Account = (props) => {
           <Button
           type={BUTTON_TYPES.PRESSABLE}
           onClick={handleViewtransactionsClick}
-          cursor="pointer"
           className="account__accountContentWrapper--button"
         >
           View Transaction
@@ -56,5 +52,4 @@ const Account = (props) => {
     </div>
   )
 }
-
 export default Account

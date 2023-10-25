@@ -34,16 +34,13 @@ const User = ({className}) => {
     }, [profile, setValue]);
 
     const onSubmit = async (data) => {
-        
-        
+               
         try{
             const user = {
                 userName: data.userName,
                 firstName: profile.firstName,
                 lastName: profile.lastName
             }
-        
-        console.log("user from submit user ", user);
         const response = await dispatch(fetchChangeAccount(user));
         if (response) {
             dispatch(saveUserProfile({ ...profile, userName: data.userName }))
@@ -51,7 +48,6 @@ const User = ({className}) => {
         if (window.location.pathname === "/user") {
             navigate("/accounts");
         }
-
         }catch(error) {
             console.log("error from submit user form", error);
         }

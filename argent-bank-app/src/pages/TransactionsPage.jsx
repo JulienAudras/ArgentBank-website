@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Account from "../components/Account";
 import Transaction from "../components/Transaction";
 import { useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { fetchGetTransactions } from "../redux";
 import "../style/style.css";

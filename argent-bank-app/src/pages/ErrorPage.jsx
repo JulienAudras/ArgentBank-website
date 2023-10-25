@@ -7,7 +7,6 @@ import Button, { BUTTON_TYPES } from '../components/Button'
 import "../style/style.css"
 
 const ErrorPage = () => {
-
     const logState = useSelector(state => state.auth.isLogged);
     const profile = useSelector((state) => state.userData.profile);
     const navigate = useNavigate();
@@ -24,8 +23,7 @@ const ErrorPage = () => {
             <Button
                 type={BUTTON_TYPES.PRESSABLE}
                 onClick={() => navigate("/accounts")}
-                className="errorPageContainer__content--button"
-                
+                className="errorPageContainer__content--button"      
                 >
                 Go back to your accounts
                 </Button>
@@ -34,7 +32,6 @@ const ErrorPage = () => {
     </div>
   )
 }
-
     else {
         return (
             <div className="errorPageContainer">
@@ -57,5 +54,4 @@ const ErrorPage = () => {
           )
     }
 }
-
 export default ErrorPage

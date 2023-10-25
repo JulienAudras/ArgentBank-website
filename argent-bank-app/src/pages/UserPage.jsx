@@ -5,7 +5,6 @@ import { useEffect } from "react"
 import { useDispatch} from "react-redux";
 import { changeUserSlice } from "../redux";
 
-
 const UserPage = () => {
   const dispatch = useDispatch();
   const openChangeUser  = changeUserSlice.actions.openChangeUser;
@@ -13,8 +12,6 @@ const UserPage = () => {
   useEffect(() => {
     dispatch(changeUserSlice.actions.openChangeUser());
   }, [dispatch, openChangeUser])
-  // if (window.location.pathname === "/user") {
-  //     dispatch(openChangeUser());}
 
   return (
     <div className="userPageContainer">
@@ -26,5 +23,4 @@ const UserPage = () => {
     </div>
   )
 }
-
 export default UserPage
