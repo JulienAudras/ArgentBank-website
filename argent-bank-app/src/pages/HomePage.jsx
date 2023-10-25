@@ -1,7 +1,6 @@
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import "../style/style.css"
-// import Logo from "../components/Logo"
 
 const HomePage = () => {
   return (

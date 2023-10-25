@@ -1,0 +1,93 @@
+[
+    {
+        "accountId": "665366d41b30636ce2a5da149",
+        "date": "26/10/23",
+        "description": "Golden Sun Bakery",
+        "transactionType": "electronic",
+        "category": "Food",
+        "notes": "",
+        "amount": 800,
+        "Balance": 208279
+    },
+    {
+        "accountId": "65366d41b30636ce2a5da149",
+        "date": "24/10/23",
+        "description": "Walmart",
+        "transactionType": "electronic",
+        "category": "Groceries",
+        "notes": "",
+        "amount": 10100,
+        "Balance": 218379
+    },
+    {
+        "accountId": "65366d41b30636ce2a5da14a",
+        "date": "20/10/23",
+        "description": "Travel Leaders",
+        "transactionType": "Bank Payment",
+        "category": "Travel",
+        "notes": "Tickets to Bali",
+        "amount": 900000,
+        "Balance": 1092842
+    },
+    {
+        "accountId": "65366d41b30636ce2a5da14b",
+        "date": "18/10/23",
+        "description": "Uber",
+        "transactionType": "electronic",
+        "category": "Transport",
+        "notes": "",
+        "amount": 1842,
+        "Balance": 210121
+    },
+    {
+        "accountId": "65366d41b30636ce2a5da149",
+        "date": "17/10/23",
+        "description": "Golden Sun Bakery",
+        "transactionType": "electronic",
+        "category": "Food",
+        "notes": "",
+        "amount": 400,
+        "Balance": 208679
+    },
+    {
+        "accountId": "65366d41b30636ce2a5da149",
+        "date": "17/10/23",
+        "description": "Dan Murphy's",
+        "transactionType": "electronic",
+        "category": "Groceries",
+        "notes": "",
+        "amount": 5250,
+        "Balance": 213929
+    },
+    {
+        "accountId": "65366d41b30636ce2a5da149",
+        "date": "15/10/23",
+        "description": "Golden Sun Bakery",
+        "transactionType": "electronic",
+        "category": "Food",
+        "notes": "",
+        "amount": 1200,
+        "Balance": 209479
+    },
+    {
+        "accountId": "65366d41b30636ce2a5da14b",
+        "date": "12/10/23",
+        "description": "Lenovo inc",
+        "transactionType": "electronic",
+        "category": "Electronics",
+        "notes": "",
+        "amount": 135000,
+        "Balance": 345121
+    },
+    {
+        "accountId": "65366d41b30636ce2a5da149",
+        "date": "09/10/23",
+        "description": "Massimo Dutti",
+        "transactionType": "electronic",
+        "category": "Clothing",
+        "notes": "",
+        "amount": 5450,
+        "Balance": 214929
+    }
+    
+]

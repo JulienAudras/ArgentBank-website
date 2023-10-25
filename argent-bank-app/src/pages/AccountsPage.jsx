@@ -19,7 +19,7 @@ const AccountsPage = () => {
   const dispatch = useDispatch();
   const userComponentState = useSelector((state) => state.changeUser.isOpen);
   const userId = profile.id;
-  
+    
   useEffect(() => {
     if (!profile) {
         dispatch(fetchUserProfile());
@@ -30,18 +30,12 @@ const AccountsPage = () => {
     dispatch(changeUserSlice.actions.closeChangeUser());
   }, [dispatch])
 
-  const hideUser = () => {
-    dispatch(changeUserSlice.actions.closeChangeUser());
-  }
-  
   const openChangeUser  = changeUserSlice.actions.openChangeUser;
    
   const handleEdit = () => {
     dispatch(openChangeUser());
-   
   }
 
- 
   useEffect(() => {
     if (!logState) {
       navigate("/login")
@@ -49,18 +43,10 @@ const AccountsPage = () => {
   });
 
   useEffect(() => {
-    if (!userComponentState) {
-      hideUser();
-    }
-  })
-
-  useEffect(() => {
     dispatch(fetchGetAccounts(userId));
   }, [dispatch, logState, userId]);
 
   const accounts = useSelector((state) => state.accounts.accounts);
-  console.log(accounts);
-
   if (!accounts) {
     return (
       <div className="accountsPageContainer">
@@ -69,15 +55,13 @@ const AccountsPage = () => {
     )
   }
   return (
-
     <div className="accountsPageContainer">
       <Header />
-      <div className="accountsPageContainer__topSection">
+      <section className="accountsPageContainer__topSection">
         <h1 className="accountsPageContainer__topSection--title">
           Welcome back <br />
           {firstNameFromApi} {lastNameFromApi}!
         </h1>
-       
        {!userComponentState &&(
         <Button 
           type={BUTTON_TYPES.PRESSABLE} 
@@ -87,21 +71,15 @@ const AccountsPage = () => {
           Edit Name
         </Button>
         )}
-        </div>
-        
+        </section>
           <User className={"accountsPageContainer__userComponent"} />
-        
-      
-      
-      <div className="accountsPageContainer__mainSection">
+      <section className="accountsPageContainer__mainSection">
         {accounts.map(account => (
           <Account key={account._id} {...account} />
         ))}
-      </div>
-
+      </section>
       <Footer />
     </div>
   )
 }
-
 export default AccountsPage

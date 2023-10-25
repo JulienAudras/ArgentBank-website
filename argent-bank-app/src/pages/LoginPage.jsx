@@ -6,12 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import {useForm} from "react-hook-form"
 import {useDispatch, useSelector } from "react-redux"
-// import { loginCall } from "../apiCalls"
-// import Field, {FIELD_TYPES} from "../components/Field"
 import Button, {BUTTON_TYPES} from "../components/Button"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-
 
 const LoginPage = () => {
  
@@ -39,12 +36,8 @@ const LoginPage = () => {
   
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
-  
-  
   const onSubmit = (data) => {
    
-    // let userNameValue = "";
-    // let passwordValue = "";
     userNameValue = data.userName;
     passwordValue = data.password;
     const user = {
@@ -62,8 +55,6 @@ const LoginPage = () => {
       .then((response) => response.json())
       
       .then((data) => {
-        // console.log("Success:", data);
-        // console.log("token", data.body.token);
         const token = data.body.token;
         
         if (token) {
@@ -93,9 +84,6 @@ const LoginPage = () => {
     navigate("/accounts") 
   }
 })
-
-// console.log("localstorage", localStorage.getItem("authToken"))
-// console.log("sessionstorage", sessionStorage.getItem("authToken"))
 
   return (
         <div className="loginPageContainer">

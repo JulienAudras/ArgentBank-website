@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const accountController = require("../controllers/accountController");
+const transactionController = require("../controllers/transactionController");
 const tokenValidation = require("../middleware/tokenValidation");
 
 router.get(
-  "/:userId",
+  "/:accountId",
   tokenValidation.validateToken,
-  accountController.getAccounts
+  transactionController.getTransactions
 );
 
 module.exports = router;

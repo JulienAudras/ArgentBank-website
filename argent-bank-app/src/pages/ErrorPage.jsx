@@ -16,7 +16,7 @@ const ErrorPage = () => {
   return (
     <div className="errorPageContainer">
         <Header />
-            <section className="errorPageContainer__content">
+            <main className="errorPageContainer__content">
             <h1>
                 Sorry {profile.firstName}, <br /> 
                 something went wrong.
@@ -29,7 +29,7 @@ const ErrorPage = () => {
                 >
                 Go back to your accounts
                 </Button>
-            </section>
+            </main>
         <Footer />
     </div>
   )
@@ -56,7 +56,6 @@ const ErrorPage = () => {
             </div>
           )
     }
-
 }
 
 export default ErrorPage

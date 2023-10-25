@@ -81,6 +81,7 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+  cursor: pointer;
 }
 .account__accountContentWrapper--button:hover {
   border: 0.2rem solid #fff;
@@ -357,20 +358,19 @@ body {
 .accountsPageContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-content: space-around;
   height: 100vh;
   min-height: 100vh;
   background-color: #12002b;
 }
 .accountsPageContainer__topSection {
-  flex: 1;
-  margin-top: 5rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
-  flex: 1;
 }
 .accountsPageContainer__topSection--title {
   color: white;
+  font-size: 2rem;
 }
 .accountsPageContainer__topSection--button {
   background-color: #00bc77;
@@ -383,14 +383,17 @@ body {
   transition: color 0.2s ease-in-out;
 }
 .accountsPageContainer__topSection--button:hover {
-  border: 0.2rem solid #12002b;
+  border-color: #12002b;
 }
 .accountsPageContainer__userComponent {
   color: #fff;
 }
 .accountsPageContainer__mainSection {
   background-color: #12002b;
-  flex: 4;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .main-nav-item {
@@ -544,4 +547,76 @@ body {
 }
 .errorPageContainer__content--button:hover {
   border: 0.2rem solid #fff;
+}
+
+.transactionContainer {
+  background-color: #00bc77;
+  color: #fff;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  padding-bottom: 0.3rem;
+  padding-top: 0.3rem;
+}
+.transactionContainer__transactionGeneral {
+  margin-left: 2%;
+  display: grid;
+  grid-template-columns: 12% 12% auto 12% 12% 3%;
+}
+.transactionContainer__transactionGeneral > * {
+  text-align: left;
+}
+.transactionContainer__transactionGeneral--arrow {
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+.transactionContainer__transactionGeneral--arrow.open {
+  transform: rotate(-180deg);
+  transform-origin: center;
+}
+.transactionContainer__transactionDetails {
+  margin-left: 2%;
+  display: flex;
+  flex-direction: column;
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+.transactionContainer__transactionDetails > * {
+  text-align: left;
+  margin-top: 0.3rem;
+  display: grid;
+  grid-template-columns: 12% 12% auto;
+}
+
+.transactionsPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: #12002b;
+}
+.transactionsPageContainer__content {
+  margin-top: 3rem;
+  flex: 4;
+}
+.transactionsPageContainer__transactions {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.transactionsPageContainer__transactions--table {
+  margin-left: 2%;
+  display: grid;
+  grid-template-columns: 12% 12% auto 12% 12% 3%;
+}
+.transactionsPageContainer__transactions--table--title {
+  font-size: 1rem;
+  text-align: left;
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

@@ -1,18 +1,12 @@
-// import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector} from "react-redux";
-// import {getProfile} from "../apiCalls"
-// import {loadUserProfile, saveUserProfile} from "../redux"
 import { fetchUserProfile } from "../redux";
 import "../style/style.css";
 
-
-
 const Log = () => {
-  // const [firstName, setFirstName] = useState(""); 
   const logState = useSelector((state) => state.auth.isLogged);
   const dispatch = useDispatch();
 
@@ -23,20 +17,15 @@ const Log = () => {
   }, [dispatch, logState]);
 
   const profile = useSelector((state) => state.userData.profile);
-  
   const userNameFromApi = profile.userName;
- 
- 
   const navigate = useNavigate(); 
  
-
   const handleLogOut = () => {
     dispatch({ type: "auth/logout" });
     navigate("/login");
     localStorage.removeItem("authToken");
     sessionStorage.removeItem("authToken"); 
   };
-
 
   return (
     <div className="loginButtonsContainer">
@@ -69,5 +58,4 @@ const Log = () => {
     </div>
   );
 };
-
 export default Log;

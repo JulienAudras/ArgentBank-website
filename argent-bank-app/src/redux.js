@@ -1,7 +1,12 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
 import { configureStore, createSelector } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getProfile, changeAccount, getAccounts } from "./apiCalls";
+import {
+  getProfile,
+  changeAccount,
+  getAccounts,
+  getTransactions,
+} from "./apiCalls";
 
 const Token =
   localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
@@ -26,7 +31,6 @@ export const fetchChangeAccount = createAsyncThunk(
   async (user) => {
     try {
       const response = await changeAccount(user);
-      console.log("response from redux's change account, ", response);
       return response;
     } catch (error) {
       console.error(error);
@@ -45,6 +49,24 @@ export const fetchGetAccounts = createAsyncThunk(
         return response;
       } catch (error) {
         console.error(error, "error in redux's get accounts");
+        throw error;
+      }
+    }
+  }
+);
+
+export const setSelectAccount = createAction("accounts/setSelectAccount");
+
+export const fetchGetTransactions = createAsyncThunk(
+  "transactions/fetchGetTransaction",
+  async (accountId) => {
+    if (accountId) {
+      try {
+        const response = await getTransactions(accountId);
+        console.log("response from redux's get transactions, ", response);
+        return response;
+      } catch (error) {
+        console.error(error, "error in redux's get transactions");
         throw error;
       }
     }
@@ -95,7 +117,7 @@ export const userSlice = createSlice({
 export const changeUserSlice = createSlice({
   name: "changeUser",
   initialState: {
-    isOpen: false,
+    isOpen: true,
   },
   reducers: {
     openChangeUser: (state) => {
@@ -131,6 +153,44 @@ export const accountSlice = createSlice({
   },
 });
 
+export const selectedAccountSlice = createSlice({
+  name: "selectedAccount",
+  initialState: null,
+  reducers: {
+    setSelectedAccount: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
+export const { setSelectedAccount } = selectedAccountSlice.actions;
+export default selectedAccountSlice.reducer;
+
+export const transactionsSlice = createSlice({
+  name: "transactions",
+  initialState: {
+    transactions: [],
+    isLoading: false,
+    error: null,
+  },
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchGetTransactions.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchGetTransactions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.transactions = action.payload;
+        console.log("state.transactions", state.transactions);
+      })
+      .addCase(fetchGetTransactions.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
+  },
+});
+
 export const { loadUserProfile } = userSlice.actions;
 
 export const selectUserProfile = (state) => state.userData.profile;
@@ -146,5 +206,7 @@ export const Store = configureStore({
     userData: userSlice.reducer,
     changeUser: changeUserSlice.reducer,
     accounts: accountSlice.reducer,
+    selectedAccount: selectedAccountSlice.reducer,
+    transactions: transactionsSlice.reducer,
   },
 });

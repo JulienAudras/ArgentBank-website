@@ -73,7 +73,8 @@ Button.defaultProps = {
   onClick: () => null,
   type: BUTTON_TYPES.DEFAULT,
   title: "",
-  children: null
+  children: null,
+  cursor: "pointer"
 }
 
 export default Button;

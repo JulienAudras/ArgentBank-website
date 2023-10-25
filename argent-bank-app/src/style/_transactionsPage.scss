@@ -1,0 +1,41 @@
+.transactionsPageContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    min-height: 100vh;
+    background-color: #12002b;
+    
+   
+    &__content{
+        
+        margin-top: 3rem;
+        flex: 4;
+    }
+    &__transactions{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+       
+        &--table{
+            margin-left: 2%;
+            display: grid;
+            grid-template-columns: 12% 12% auto 12% 12% 3%;
+            &--title{
+                font-size: 1rem;
+                text-align: left;
+                color:#fff,      
+            }
+        };
+    }
+    // &__footer{
+    //     position:absolute;
+    //     bottom: 0;
+    //     width:100%;
+
+    // }
+    
+}

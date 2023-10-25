@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3001;
 
 const userRoutes = require("./routes/userRoutes");
 const accountRoutes = require("./routes/accountRoutes");
+const transactionRoutes = require("./routes/transactionRoutes");
 
 // Connect to the database
 dbConnection();
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 // Handle custom routes
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/account", accountRoutes);
+app.use("/api/v1/transaction", transactionRoutes);
 
 // API Documentation
 if (process.env.NODE_ENV !== "production") {

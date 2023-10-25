@@ -1,12 +1,23 @@
 import Button, {BUTTON_TYPES} from "./Button";
 import {useNavigate} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {setSelectedAccount} from "../redux";
 import "../style/style.css";
 
 
 
 const Account = (props) => {
+  const dispatch = useDispatch();
   const formattedBalance = (props.balance/100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const navigate = useNavigate();
+  const handleViewtransactionsClick = () => {
+    dispatch(setSelectedAccount(props._id)); 
+    navigate("/transactions");
+  };
+  const handleBackToaccountsClick = () => {
+    dispatch(setSelectedAccount(null)); 
+    navigate("/accounts");
+  }
   return (
     <div className="account" id={props._id}>
       <div className="account__accountContentWrapper">
@@ -21,13 +32,26 @@ const Account = (props) => {
         </p>
       </div>
       <div className="account__accountContentWrapper cta">
-        <Button
+        {props.isOnTransactionsPage ? (
+          <Button
           type={BUTTON_TYPES.PRESSABLE}
-          onClick={() => navigate("/transactions")}
+          cursor="pointer"
+          onClick={handleBackToaccountsClick}
+          className="account__accountContentWrapper--button"
+        >
+          Back to accounts
+        </Button>
+        ) : (
+          
+          <Button
+          type={BUTTON_TYPES.PRESSABLE}
+          onClick={handleViewtransactionsClick}
+          cursor="pointer"
           className="account__accountContentWrapper--button"
         >
           View Transaction
         </Button>
+        )}
       </div>
     </div>
   )

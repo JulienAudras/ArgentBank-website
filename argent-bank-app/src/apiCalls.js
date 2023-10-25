@@ -22,7 +22,6 @@
 //   }
 // };
 
-// Call to handle profile's data
 export const getProfile = async () => {
   const token =
     localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
@@ -35,11 +34,11 @@ export const getProfile = async () => {
       },
     });
 
-    if (!response.ok) {
+    if (response.status !== 200) {
       throw new Error("Something went wrong with the profile's request");
     }
-
     const data = await response.json();
+    console.log("dataFromProfileApi:", data);
     return data.body;
   } catch (error) {
     console.error(error);
@@ -91,6 +90,33 @@ export const getAccounts = async (userId) => {
       );
       if (!response.ok) {
         throw new Error("Something went wrong with the account's request");
+      }
+      const data = await response.json();
+      return data.body;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+};
+
+// Call to handle transaction's data
+export const getTransactions = async (accountId) => {
+  if (accountId) {
+    const token =
+      localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/v1/transaction/${accountId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong with the transaction's request");
       }
       const data = await response.json();
       return data.body;

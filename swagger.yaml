@@ -124,6 +124,77 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /transaction/{accountId}:
+    get:
+      tags:
+        - Transaction Module
+      summary: Get Account Transactions
+      description: API to fetch account transactions by transactionId
+      parameters:
+        - name: accountId
+          in: path
+          description: account ID
+          required: true
+          type: string
+      security:
+        - Bearer: []
+      responses:
+        '200':
+          description: account transactions retrieved successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /transaction/{accountId}/{transactionId}/category:
+    put:
+      tags:
+        - Transaction Module
+      summary: Update Transaction's Category
+      description: API to update transaction's category by transactionId
+      parameters:
+        - name: transactionId
+          in: path
+          description: transaction ID
+          required: true
+          type: string
+      security:
+        - Bearer: []
+      responses:
+        '200':
+          description: transaction's category updated successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /transaction/{accountId}/{transactionId}/note:
+    post:
+      tags:
+        - Transaction Module
+      summary: Add Transaction's Note
+      description: API to add transaction's note by transactionId
+      parameters:
+        - name: transaction Id
+          in: path
+          description: transaction ID
+          required: true
+          type: string
+      security:
+        - Bearer: []
+      responses:
+        '200':
+          description: transaction's note added successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -196,4 +267,45 @@ definitions:
       currency:
         type: string
         description: Account's currency
- 
+  Transaction:
+    properties:
+      account:
+        type: string 
+        description: Account's Id connected to transactions
+      Date:
+        type: string
+        description: Transaction's date
+      Description:
+        type: string
+        description: Transaction Description
+      Transacation Type:
+        type: string
+        description: Transaction Type
+      Category:
+        type: string
+        description: Transaction Category
+      Note:
+        type: string
+        description: Transaction Note (Blank by default)
+      Ammount:
+        type: number  
+        description: Ammount of the transaction, in cents
+      Balance:
+        type: number
+        description: Balance of the account after the transaction, in cents
+  Category:
+    properties:
+      transaction:
+        type: string 
+        description: Transaction's Id connected to category
+      Category:
+        type: string
+        description: Transaction Category
+  Note:
+    properties:
+      transaction:
+        type: string 
+        description: Transaction's Id connected to note
+      Note:
+        type: string
+        description: Transaction Note (Blank by default)

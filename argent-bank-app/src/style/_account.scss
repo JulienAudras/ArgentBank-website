@@ -53,6 +53,7 @@
             border-color: #00bc77;
             background-color: #00bc77;
             color: #fff;
+            cursor: pointer;
             &:hover{
                 border: 0.2rem solid #fff;
             }
@@ -66,28 +67,4 @@
     .hidden{
         display: none;
     }
-
- 
-    // &__accountActions{
-    //     width:15%;
-    //     display: flex;
-        
-    //     &--button{
-    //         background-color: #00bc77;
-    //         color: #fff;
-    //         padding:8px;
-    //         font-size: 1.1rem;
-    //         font-weight: bold;
-    //         border-color: #00bc77;
-    //         margin:auto;
-    //         cursor: pointer;
-    //         transition: color 0.2s ease-in-out;
-    //         &:hover{
-    //             border: 0.2rem solid #12002b;
-    //         }
-    //     }
-        
-    // }
-
-
 }

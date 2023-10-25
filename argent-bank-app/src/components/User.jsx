@@ -10,25 +10,19 @@ import "../style/style.css";
 const User = ({className}) => {
     const dispatch = useDispatch();
     const profile = useSelector((state) => state.userData.profile);
-    console.log("profile from user", profile);
     const [userName, setUserName] = useState(profile.userName);
     const [lastName, setLastName] = useState(profile.lastName);
     const [firstName, setFirstName] = useState(profile.firstName);
     const navigate = useNavigate();
-    // const isOpenState = useSelector((state) => state.changeUser.isOpen);
     const closeChangeUser  = changeUserSlice.actions.closeChangeUser;
     const userComponentState = useSelector((state) => state.changeUser.isOpen);
-    const hideUserComponent = () => {
-        dispatch(changeUserSlice.actions.closeChangeUser())
- ;   }
-    
+
     useEffect(() => {
         if (!profile) {
             dispatch(fetchUserProfile());
         }
     }, [dispatch, profile]);
     
-
     const { register, handleSubmit, setValue } = useForm();
 
     useEffect(() => {
@@ -41,6 +35,7 @@ const User = ({className}) => {
 
     const onSubmit = async (data) => {
         
+        
         try{
             const user = {
                 userName: data.userName,
@@ -51,9 +46,7 @@ const User = ({className}) => {
         console.log("user from submit user ", user);
         const response = await dispatch(fetchChangeAccount(user));
         if (response) {
-            // response.setUserName(data.userName);
             dispatch(saveUserProfile({ ...profile, userName: data.userName }))
-            hideUserComponent();
         };
         if (window.location.pathname === "/user") {
             navigate("/accounts");
@@ -64,7 +57,8 @@ const User = ({className}) => {
         }
     }
 
-    const handleCancel = () => {
+    const handleCancel = (event) => {
+        event.preventDefault()
         if (window.location.pathname === "/user") {
             dispatch(closeChangeUser());
             navigate("/accounts");
@@ -86,8 +80,7 @@ const User = ({className}) => {
                     defaultValue={userName}
                     onChange={e => setUserName(e.target.value)}
                 />
-            </div>
-            
+            </div>        
             <div className="editUserForm__container">
                 <label className="editUserForm__container--label">First name:</label>
                 <input {...register("firstName")}
@@ -98,8 +91,7 @@ const User = ({className}) => {
                     onChange={e => setFirstName(e.target.value)} 
                     readOnly 
                 />
-            </div>
-            
+            </div>        
             <div className="editUserForm__container">
                 <label className="editUserForm__container--label">Last name:</label>
                 <input {...register("lastName")}
@@ -111,7 +103,6 @@ const User = ({className}) => {
                     readOnly 
                 />
             </div>
-
             <div className="editUserForm__container">
                 <Button 
                     type={BUTTON_TYPES.SUBMIT}  
@@ -120,7 +111,6 @@ const User = ({className}) => {
                     className="editUserForm__container--submitButton" 
                    >
                     Save
-
                 </Button>
                 <Button 
                 title="Cancel"
@@ -137,5 +127,4 @@ const User = ({className}) => {
     return null;
 }
 }
-
 export default User
