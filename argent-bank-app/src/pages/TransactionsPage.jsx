@@ -15,6 +15,7 @@ const TransactionsPage = (props) => {
 
   const accounts = useSelector((state) => state.accounts.accounts);
   const account = accounts.find((account) => account._id === selectedAccountId);
+  console.log("account " ,account);
 
 
   const transactions = useSelector((state) => state.transactions.transactions);
