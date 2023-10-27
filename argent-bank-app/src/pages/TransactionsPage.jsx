@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import Account from "../components/Account";
 import Transaction from "../components/Transaction";
 import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { fetchGetTransactions } from "../redux";
 import "../style/style.css";
@@ -11,11 +11,12 @@ import "../style/style.css";
 
 const TransactionsPage = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const selectedAccountId = useSelector((state) => state.selectedAccount);
 
   const accounts = useSelector((state) => state.accounts.accounts);
   const account = accounts.find((account) => account._id === selectedAccountId);
-  console.log("account " ,account);
+  
 
 
   const transactions = useSelector((state) => state.transactions.transactions);
@@ -33,12 +34,28 @@ const TransactionsPage = (props) => {
     dispatch(fetchGetTransactions(accountId));
   }, [dispatch, selectedAccountId]);
 
-  if (!transactions && !account) {
+  useEffect(() => {
+    const transactionsTimeout = setTimeout(() => {
+      if (!transactions) {
+        navigate('/accounts');
+      }
+      }, 3000);
+      return () => {
+        clearTimeout(transactionsTimeout);
+      };
+    }, [transactions, navigate]);
+
+  if (!transactions || !account) {
     return (
-      <div className="transactionsPageContainer">
-        Loading
+      <div className="transactionsPageContainerLoading">
+        <Header />
+        <div className="transactionsPageContainerLoading__content">
+          <div className="transactionsPageContainerLoading__content--loader"></div>
+            <h1 className="transactionsPageContainerLoading__content--title">Loading...</h1>
+        </div>
+        <Footer />
       </div>
-    )
+    );
   }
   
   return (

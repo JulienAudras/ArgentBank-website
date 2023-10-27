@@ -46,13 +46,34 @@ const AccountsPage = () => {
   }, [dispatch, logState, userId]);
 
   const accounts = useSelector((state) => state.accounts.accounts);
+  console.log("accounts", accounts);
+  
+
+  useEffect(() => {
+    const accountsTimeout = setTimeout(() => {
+      if (!accounts) {
+        navigate('/');
+      }
+    }, 3000);
+
+    return () => {
+      clearTimeout(accountsTimeout);
+    };
+  }, [accounts, navigate]);
+
   if (!accounts) {
     return (
-      <div className="accountsPageContainer">
-        Loading
+      <div className="accountsPageContainerLoading">
+        <Header />
+        <div className="accountsPageContainerLoading__content">
+          <div className="accountsPageContainerLoading__content--loader"></div>
+          <h1 className="accountsPageContainerLoading__content--title">Loading...</h1>
+        </div>
+        <Footer />
       </div>
-    )
+    );
   }
+
   return (
     <div className="accountsPageContainer">
       <Header />
