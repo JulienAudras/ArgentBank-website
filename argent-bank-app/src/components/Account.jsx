@@ -45,7 +45,7 @@ const Account = (props) => {
           onClick={handleViewtransactionsClick}
           className="account__accountContentWrapper--button"
         >
-          View Transaction
+          View Transactions
         </Button>
         )}
       </div>
