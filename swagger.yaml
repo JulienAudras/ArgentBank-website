@@ -181,7 +181,7 @@ paths:
           description: Account Not Found
         '500':
           description: Internal Server Error
-  /transaction/{accountId}/selectedPeriod:
+  /transaction/custom/{accountId}/{selectedPeriod}:
     get:
       tags:
         - Transaction Module
@@ -193,11 +193,15 @@ paths:
           description: account ID
           required: true
           type: string
-        - name: selectedPeriod
-          in: query
-          description: selected period
+        - name: selected period
+          in: body
+          description: Request body containing user input with selected period
           required: true
-          type: string
+          schema:
+            type: object
+            properties:
+              userInputField:
+                type: string
       security:
         - Bearer: []
       responses:
@@ -211,7 +215,7 @@ paths:
           description: Account Not Found
         '500':
           description: Internal Server Error
-  /transaction/{accountId}/{transactionId}:
+  /transaction/{transactionId}:
     get:
       tags:
         - Transaction Module
@@ -248,7 +252,7 @@ paths:
           description: transaction ID
           required: true
           type: string
-        - name: body
+        - name: change category
           in: body
           description: Request body containing user input
           required: true
@@ -310,7 +314,7 @@ paths:
           description: transaction ID
           required: true
           type: string
-        - name: body
+        - name: new note
           in: body
           description: Request body containing user input
           required: true
@@ -345,7 +349,7 @@ paths:
           description: transaction ID
           required: true
           type: string
-        - name: body
+        - name: change note
           in: body
           description: Request body containing user input
           required: true
@@ -354,8 +358,9 @@ paths:
             properties:
               userInputField:
                 type: string
+      
       security:
-        - Bearer: []
+        - Bearer: [] 
       responses:
         '200':
           description: transaction's note updated successfully
