@@ -20,7 +20,6 @@ const TransactionsPage = (props) => {
 
 
   const transactions = useSelector((state) => state.transactions.transactions);
-  // const filteredTransactions = transactions.filter((transaction) => transaction.accountId === selectedAccountId);
   
   function formatInDollars(amountInCents) {
     return (amountInCents / 100).toLocaleString("en-US", {

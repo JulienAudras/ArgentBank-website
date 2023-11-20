@@ -7,6 +7,7 @@ import AccountsPage from "./pages/AccountsPage";
 import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/ErrorPage";
 import TransactionsPage from "./pages/TransactionsPage";
+import "./style/style.css";
 
 function App() {
   return (

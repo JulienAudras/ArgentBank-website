@@ -7,7 +7,6 @@ import {useSelector, useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect} from "react";
 import { changeUserSlice, fetchGetAccounts, fetchUserProfile } from "../redux";
-import "../style/style.css";
 
 const AccountsPage = () => {
   const logState = useSelector(state => state.auth.isLogged);

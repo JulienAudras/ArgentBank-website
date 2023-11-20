@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react"
-import "../style/style.css"
 
 const Transaction = (props) => {
     const [isOpen, setIsOpen] = useState(false);

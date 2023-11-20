@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector} from "react-redux";
 import { fetchUserProfile } from "../redux";
-import "../style/style.css";
 
 const Log = () => {
   const logState = useSelector((state) => state.auth.isLogged);

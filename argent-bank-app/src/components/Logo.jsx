@@ -1,5 +1,3 @@
-import "../style/style.css"
-
 const Logo = () => {
   return (
     <div className='logo' data-testid="logo-testid">

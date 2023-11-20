@@ -68,7 +68,6 @@ module.exports.updateUserProfile = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
-// Ajout pour getAccount
 module.exports.getAccounts = async (req, res) => {
   let response = {
     status: 200,

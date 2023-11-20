@@ -1,7 +1,5 @@
 import PropTypes from "prop-types";
 
-import "../style/style.css";
-
 export const BUTTON_TYPES = {
   SUBMIT: 1,
   PRESSABLE: 2
@@ -19,18 +17,6 @@ const Button = ({ title, onClick, type, disabled, className, children }) => {
           onClick={onClick}
           title={title}
         />
-      );
-      case BUTTON_TYPES.GREEN:
-      return (
-        <button
-          type=""
-          disabled={disabled}
-          className={className}
-          onClick={onClick}
-          title={title}
-        >
-          {children}
-        </button>
       );
     case BUTTON_TYPES.PRESSABLE:
       return (

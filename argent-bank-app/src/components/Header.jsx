@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Logo from "./Logo"
 import Log from "./Log"
-import "../style/style.css"
 
 export const Header = () => {
 

@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom";
 import {fetchUserProfile, fetchChangeAccount, saveUserProfile} from "../redux";
 import { changeUserSlice } from "../redux";
 import Button, {BUTTON_TYPES} from "../components/Button";
-import "../style/style.css";
 
 const User = ({className}) => {
     const dispatch = useDispatch();

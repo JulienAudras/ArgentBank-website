@@ -4,7 +4,6 @@ import Footer from '../components/Footer'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button, { BUTTON_TYPES } from '../components/Button'
-import "../style/style.css"
 
 const ErrorPage = () => {
     const logState = useSelector(state => state.auth.isLogged);
