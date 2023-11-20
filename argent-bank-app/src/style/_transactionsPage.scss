@@ -49,10 +49,18 @@
             margin-left: 2%;
             display: grid;
             grid-template-columns: 12% 12% auto 12% 12% 3%;
+            @media (max-width: 920px) {
+              grid-template-columns: 20% 35% auto 20% 20%;
+            }
             &--title{
                 font-size: 1rem;
                 text-align: left;
-                color:#fff,      
+                color:#fff;
+                @media (max-width: 920px) {
+                  &:nth-child(2) {
+                    text-align: center;
+                  }
+                }    
             }
         };
     }  

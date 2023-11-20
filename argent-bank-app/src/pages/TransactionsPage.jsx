@@ -74,12 +74,12 @@ const TransactionsPage = (props) => {
         </div>
         <div className="transactionsPageContainer__transactions">
           <div className="transactionsPageContainer__transactions--table">
-          <h2 className="transactionsPageContainer__transactions--table--title">Date</h2>
-          <h2 className="transactionsPageContainer__transactions--table--title">Description</h2>
-          <div />
-          <h2 className="transactionsPageContainer__transactions--table--title">Amount</h2>
-          <h2 className="transactionsPageContainer__transactions--table--title">Balance</h2>
-          <div />
+            <h2 className="transactionsPageContainer__transactions--table--title">Date</h2>
+            <h2 className="transactionsPageContainer__transactions--table--title">Description</h2>
+            <div />
+            <h2 className="transactionsPageContainer__transactions--table--title">Amount</h2>
+            <h2 className="transactionsPageContainer__transactions--table--title">Balance</h2>
+            <div />
           </div>
           
           {transactions.map((transaction) => (
@@ -98,10 +98,8 @@ const TransactionsPage = (props) => {
         </div>
       </main>
 
-
-      {/* <div className="transactionsPageContainer__footer"> */}
       <Footer />
-      {/* </div> */}
+      
     </div>
   )
 }

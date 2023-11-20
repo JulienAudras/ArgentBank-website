@@ -124,26 +124,6 @@ body {
   cursor: pointer;
 }
 
-.greenButton {
-  outline: none;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  font: inherit;
-  display: block;
-  width: 100%;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-  cursor: pointer;
-}
-
 * {
   font-family: Arial;
 }
@@ -154,6 +134,9 @@ body {
   border-top: 2px solid #ccc;
   padding: 2rem 0 1.5rem;
   background-color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 .footer__text {
   margin: 0;
@@ -203,7 +186,6 @@ body {
 .homePageContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100vh;
   min-height: 100vh;
 }
@@ -265,9 +247,9 @@ body {
   flex-direction: row;
   background-color: white;
 }
-@media (min-width: 920px) {
-  .features .features {
-    flex-direction: row;
+@media (max-width: 920px) {
+  .features {
+    flex-direction: column;
   }
 }
 .features__item {
@@ -509,9 +491,6 @@ body {
 .userPageContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  min-height: 100vh;
   background-color: white;
 }
 
@@ -561,6 +540,7 @@ body {
   background-color: #00bc77;
   transition: background-color 0.3s ease-in-out;
   color: #fff;
+  min-width: 120px;
 }
 .editUserForm__container--submitButton:hover {
   background-color: #00bc77;
@@ -583,6 +563,7 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+  min-width: 120px;
 }
 .editUserForm__container--cancelButton:hover {
   background-color: #00bc77;
@@ -638,6 +619,7 @@ body {
   margin: auto;
   cursor: pointer;
   transition: color 0.2s ease-in-out;
+  min-width: 120px;
 }
 .errorPageContainer__content--button:hover {
   border: 0.2rem solid #fff;
@@ -702,6 +684,14 @@ body {
   transform: scale(1.2);
 }
 
+@media (max-width: 920px) {
+  .transactionContainer__transactionGeneral {
+    grid-template-columns: 30% 30% auto 20% 20%;
+  }
+  .transactionContainer__transactionDetails > * {
+    grid-template-columns: 30% 30% auto;
+  }
+}
 * {
   font-family: Arial;
 }
@@ -750,10 +740,20 @@ body {
   display: grid;
   grid-template-columns: 12% 12% auto 12% 12% 3%;
 }
+@media (max-width: 920px) {
+  .transactionsPageContainer__transactions--table {
+    grid-template-columns: 20% 35% auto 20% 20%;
+  }
+}
 .transactionsPageContainer__transactions--table--title {
   font-size: 1rem;
   text-align: left;
   color: #fff;
+}
+@media (max-width: 920px) {
+  .transactionsPageContainer__transactions--table--title:nth-child(2) {
+    text-align: center;
+  }
 }
 
 .transactionsPageContainerLoading {

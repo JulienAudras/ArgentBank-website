@@ -67,3 +67,17 @@
         }              
     }
 }
+
+@media (max-width: 920px) {
+    .transactionContainer {
+        &__transactionGeneral {
+            grid-template-columns: 30% 30% auto 20% 20%;
+        }
+    
+        &__transactionDetails {
+            & > * {
+            grid-template-columns: 30% 30% auto;
+            }
+        }
+        }
+    }
