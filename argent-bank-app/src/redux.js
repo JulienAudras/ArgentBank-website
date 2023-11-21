@@ -63,7 +63,6 @@ export const fetchGetTransactions = createAsyncThunk(
     if (accountId) {
       try {
         const response = await getTransactions(accountId);
-        console.log("response from redux's get transactions, ", response);
         return response;
       } catch (error) {
         console.error(error, "error in redux's get transactions");
@@ -182,7 +181,6 @@ export const transactionsSlice = createSlice({
       .addCase(fetchGetTransactions.fulfilled, (state, action) => {
         state.isLoading = false;
         state.transactions = action.payload;
-        console.log("state.transactions", state.transactions);
       })
       .addCase(fetchGetTransactions.rejected, (state, action) => {
         state.isLoading = false;

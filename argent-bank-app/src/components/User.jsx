@@ -102,7 +102,6 @@ const User = ({className}) => {
                 <Button 
                     type={BUTTON_TYPES.SUBMIT}  
                     title="Sign In"
-                    data-testid="Save"
                     className="editUserForm__container--submitButton" 
                    >
                     Save

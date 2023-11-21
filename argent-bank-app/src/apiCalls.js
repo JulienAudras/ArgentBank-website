@@ -59,7 +59,6 @@ export const changeAccount = async (user) => {
       },
       body: JSON.stringify(user),
     });
-    console.log("updatedUserData, ", user);
 
     if (!response.ok) {
       throw new Error("Something went wrong with the change profile's request");

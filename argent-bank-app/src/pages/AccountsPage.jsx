@@ -45,9 +45,7 @@ const AccountsPage = () => {
   }, [dispatch, logState, userId]);
 
   const accounts = useSelector((state) => state.accounts.accounts);
-  console.log("accounts", accounts);
   
-
   useEffect(() => {
     const accountsTimeout = setTimeout(() => {
       if (!accounts) {
