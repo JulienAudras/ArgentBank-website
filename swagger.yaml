@@ -227,7 +227,7 @@ paths:
         description: Transaction ID
         required: true
         type: string
-      - name: updateDetails
+      - name: Details
         in: body
         description: Request body containing user input for note and category updates
         required: true
