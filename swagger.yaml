@@ -101,7 +101,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /account/{userId}:
+  /account:
     get:
       tags:
         - Account Module
@@ -145,7 +145,7 @@ paths:
           description: Account Not Found
         '500':
           description: Internal Server Error
-  /transaction/custom/{accountId}/{selectedPeriod}:
+  /transaction/custom/{accountId}/{startingDate}/{endingDate}:
     get:
       tags:
         - Transaction Module
@@ -215,7 +215,6 @@ paths:
           description: Transaction Not Found
         '500':
           description: Internal Server Error
-  /transaction/{transactionId}/details:
     patch:
       tags:
         - Transaction Module
